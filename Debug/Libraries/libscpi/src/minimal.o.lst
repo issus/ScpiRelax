@@ -1,0 +1,951 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "minimal.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .section .text.SCPI_Stub,"ax",%progbits
+  20              	 .align 2
+  21              	 .global SCPI_Stub
+  22              	 .thumb
+  23              	 .thumb_func
+  25              	SCPI_Stub:
+  26              	.LFB0:
+  27              	 .file 1 "../Libraries/libscpi/src/minimal.c"
+   1:../Libraries/libscpi/src/minimal.c **** /*-
+   2:../Libraries/libscpi/src/minimal.c ****  * BSD 2-Clause License
+   3:../Libraries/libscpi/src/minimal.c ****  *
+   4:../Libraries/libscpi/src/minimal.c ****  * Copyright (c) 2012-2018, Jan Breuer
+   5:../Libraries/libscpi/src/minimal.c ****  * All rights reserved.
+   6:../Libraries/libscpi/src/minimal.c ****  *
+   7:../Libraries/libscpi/src/minimal.c ****  * Redistribution and use in source and binary forms, with or without
+   8:../Libraries/libscpi/src/minimal.c ****  * modification, are permitted provided that the following conditions are met:
+   9:../Libraries/libscpi/src/minimal.c ****  *
+  10:../Libraries/libscpi/src/minimal.c ****  * * Redistributions of source code must retain the above copyright notice, this
+  11:../Libraries/libscpi/src/minimal.c ****  *   list of conditions and the following disclaimer.
+  12:../Libraries/libscpi/src/minimal.c ****  *
+  13:../Libraries/libscpi/src/minimal.c ****  * * Redistributions in binary form must reproduce the above copyright notice,
+  14:../Libraries/libscpi/src/minimal.c ****  *   this list of conditions and the following disclaimer in the documentation
+  15:../Libraries/libscpi/src/minimal.c ****  *   and/or other materials provided with the distribution.
+  16:../Libraries/libscpi/src/minimal.c ****  *
+  17:../Libraries/libscpi/src/minimal.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  18:../Libraries/libscpi/src/minimal.c ****  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  19:../Libraries/libscpi/src/minimal.c ****  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  20:../Libraries/libscpi/src/minimal.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  21:../Libraries/libscpi/src/minimal.c ****  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  22:../Libraries/libscpi/src/minimal.c ****  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  23:../Libraries/libscpi/src/minimal.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  24:../Libraries/libscpi/src/minimal.c ****  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  25:../Libraries/libscpi/src/minimal.c ****  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  26:../Libraries/libscpi/src/minimal.c ****  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  27:../Libraries/libscpi/src/minimal.c ****  */
+  28:../Libraries/libscpi/src/minimal.c **** 
+  29:../Libraries/libscpi/src/minimal.c **** /**
+  30:../Libraries/libscpi/src/minimal.c ****  * @file   scpi_minimal.c
+  31:../Libraries/libscpi/src/minimal.c ****  * @date   Thu Nov 15 10:58:45 UTC 2012
+  32:../Libraries/libscpi/src/minimal.c ****  *
+  33:../Libraries/libscpi/src/minimal.c ****  * @brief  SCPI minimal implementation
+  34:../Libraries/libscpi/src/minimal.c ****  *
+  35:../Libraries/libscpi/src/minimal.c ****  *
+  36:../Libraries/libscpi/src/minimal.c ****  */
+  37:../Libraries/libscpi/src/minimal.c **** 
+  38:../Libraries/libscpi/src/minimal.c **** 
+  39:../Libraries/libscpi/src/minimal.c **** #include "scpi/parser.h"
+  40:../Libraries/libscpi/src/minimal.c **** #include "scpi/minimal.h"
+  41:../Libraries/libscpi/src/minimal.c **** #include "scpi/constants.h"
+  42:../Libraries/libscpi/src/minimal.c **** #include "scpi/error.h"
+  43:../Libraries/libscpi/src/minimal.c **** #include "scpi/ieee488.h"
+  44:../Libraries/libscpi/src/minimal.c **** #include "utils_private.h"
+  45:../Libraries/libscpi/src/minimal.c **** 
+  46:../Libraries/libscpi/src/minimal.c **** /**
+  47:../Libraries/libscpi/src/minimal.c ****  * Command stub function
+  48:../Libraries/libscpi/src/minimal.c ****  * @param context
+  49:../Libraries/libscpi/src/minimal.c ****  * @return
+  50:../Libraries/libscpi/src/minimal.c ****  */
+  51:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_Stub(scpi_t * context) {
+  28              	 .loc 1 51 0
+  29              	 .cfi_startproc
+  30              	 
+  31              	 
+  32              	 
+  33 0000 80B4     	 push {r7}
+  34              	.LCFI0:
+  35              	 .cfi_def_cfa_offset 4
+  36              	 .cfi_offset 7,-4
+  37 0002 83B0     	 sub sp,sp,#12
+  38              	.LCFI1:
+  39              	 .cfi_def_cfa_offset 16
+  40 0004 00AF     	 add r7,sp,#0
+  41              	.LCFI2:
+  42              	 .cfi_def_cfa_register 7
+  43 0006 7860     	 str r0,[r7,#4]
+  52:../Libraries/libscpi/src/minimal.c ****     (void) context;
+  53:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+  44              	 .loc 1 53 0
+  45 0008 0123     	 movs r3,#1
+  46 000a 5BB2     	 sxtb r3,r3
+  54:../Libraries/libscpi/src/minimal.c **** }
+  47              	 .loc 1 54 0
+  48 000c 1846     	 mov r0,r3
+  49 000e 0C37     	 adds r7,r7,#12
+  50              	.LCFI3:
+  51              	 .cfi_def_cfa_offset 4
+  52 0010 BD46     	 mov sp,r7
+  53              	.LCFI4:
+  54              	 .cfi_def_cfa_register 13
+  55              	 
+  56 0012 5DF8047B 	 ldr r7,[sp],#4
+  57              	.LCFI5:
+  58              	 .cfi_restore 7
+  59              	 .cfi_def_cfa_offset 0
+  60 0016 7047     	 bx lr
+  61              	 .cfi_endproc
+  62              	.LFE0:
+  64              	 .section .text.SCPI_StubQ,"ax",%progbits
+  65              	 .align 2
+  66              	 .global SCPI_StubQ
+  67              	 .thumb
+  68              	 .thumb_func
+  70              	SCPI_StubQ:
+  71              	.LFB1:
+  55:../Libraries/libscpi/src/minimal.c **** 
+  56:../Libraries/libscpi/src/minimal.c **** /**
+  57:../Libraries/libscpi/src/minimal.c ****  * Query command stub function
+  58:../Libraries/libscpi/src/minimal.c ****  * @param context
+  59:../Libraries/libscpi/src/minimal.c ****  * @return
+  60:../Libraries/libscpi/src/minimal.c ****  */
+  61:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StubQ(scpi_t * context) {
+  72              	 .loc 1 61 0
+  73              	 .cfi_startproc
+  74              	 
+  75              	 
+  76 0000 80B5     	 push {r7,lr}
+  77              	.LCFI6:
+  78              	 .cfi_def_cfa_offset 8
+  79              	 .cfi_offset 7,-8
+  80              	 .cfi_offset 14,-4
+  81 0002 82B0     	 sub sp,sp,#8
+  82              	.LCFI7:
+  83              	 .cfi_def_cfa_offset 16
+  84 0004 00AF     	 add r7,sp,#0
+  85              	.LCFI8:
+  86              	 .cfi_def_cfa_register 7
+  87 0006 7860     	 str r0,[r7,#4]
+  62:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultInt32(context, 0);
+  88              	 .loc 1 62 0
+  89 0008 7868     	 ldr r0,[r7,#4]
+  90 000a 0021     	 movs r1,#0
+  91 000c FFF7FEFF 	 bl SCPI_ResultInt32
+  63:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+  92              	 .loc 1 63 0
+  93 0010 0123     	 movs r3,#1
+  94 0012 5BB2     	 sxtb r3,r3
+  64:../Libraries/libscpi/src/minimal.c **** }
+  95              	 .loc 1 64 0
+  96 0014 1846     	 mov r0,r3
+  97 0016 0837     	 adds r7,r7,#8
+  98              	.LCFI9:
+  99              	 .cfi_def_cfa_offset 8
+ 100 0018 BD46     	 mov sp,r7
+ 101              	.LCFI10:
+ 102              	 .cfi_def_cfa_register 13
+ 103              	 
+ 104 001a 80BD     	 pop {r7,pc}
+ 105              	 .cfi_endproc
+ 106              	.LFE1:
+ 108              	 .section .rodata
+ 109              	 .align 2
+ 110              	.LC0:
+ 111 0000 31393939 	 .ascii "1999.0\000"
+ 111      2E3000
+ 112 0007 00       	 .section .text.SCPI_SystemVersionQ,"ax",%progbits
+ 113              	 .align 2
+ 114              	 .global SCPI_SystemVersionQ
+ 115              	 .thumb
+ 116              	 .thumb_func
+ 118              	SCPI_SystemVersionQ:
+ 119              	.LFB2:
+  65:../Libraries/libscpi/src/minimal.c **** 
+  66:../Libraries/libscpi/src/minimal.c **** /**
+  67:../Libraries/libscpi/src/minimal.c ****  * SYSTem:VERSion?
+  68:../Libraries/libscpi/src/minimal.c ****  * @param context
+  69:../Libraries/libscpi/src/minimal.c ****  * @return
+  70:../Libraries/libscpi/src/minimal.c ****  */
+  71:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_SystemVersionQ(scpi_t * context) {
+ 120              	 .loc 1 71 0
+ 121              	 .cfi_startproc
+ 122              	 
+ 123              	 
+ 124 0000 80B5     	 push {r7,lr}
+ 125              	.LCFI11:
+ 126              	 .cfi_def_cfa_offset 8
+ 127              	 .cfi_offset 7,-8
+ 128              	 .cfi_offset 14,-4
+ 129 0002 82B0     	 sub sp,sp,#8
+ 130              	.LCFI12:
+ 131              	 .cfi_def_cfa_offset 16
+ 132 0004 00AF     	 add r7,sp,#0
+ 133              	.LCFI13:
+ 134              	 .cfi_def_cfa_register 7
+ 135 0006 7860     	 str r0,[r7,#4]
+  72:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultMnemonic(context, SCPI_STD_VERSION_REVISION);
+ 136              	 .loc 1 72 0
+ 137 0008 7868     	 ldr r0,[r7,#4]
+ 138 000a 0549     	 ldr r1,.L7
+ 139 000c 0622     	 movs r2,#6
+ 140 000e FFF7FEFF 	 bl SCPI_ResultCharacters
+  73:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 141              	 .loc 1 73 0
+ 142 0012 0123     	 movs r3,#1
+ 143 0014 5BB2     	 sxtb r3,r3
+  74:../Libraries/libscpi/src/minimal.c **** }
+ 144              	 .loc 1 74 0
+ 145 0016 1846     	 mov r0,r3
+ 146 0018 0837     	 adds r7,r7,#8
+ 147              	.LCFI14:
+ 148              	 .cfi_def_cfa_offset 8
+ 149 001a BD46     	 mov sp,r7
+ 150              	.LCFI15:
+ 151              	 .cfi_def_cfa_register 13
+ 152              	 
+ 153 001c 80BD     	 pop {r7,pc}
+ 154              	.L8:
+ 155 001e 00BF     	 .align 2
+ 156              	.L7:
+ 157 0020 00000000 	 .word .LC0
+ 158              	 .cfi_endproc
+ 159              	.LFE2:
+ 161              	 .section .text.SCPI_SystemErrorNextQ,"ax",%progbits
+ 162              	 .align 2
+ 163              	 .global SCPI_SystemErrorNextQ
+ 164              	 .thumb
+ 165              	 .thumb_func
+ 167              	SCPI_SystemErrorNextQ:
+ 168              	.LFB3:
+  75:../Libraries/libscpi/src/minimal.c **** 
+  76:../Libraries/libscpi/src/minimal.c **** /**
+  77:../Libraries/libscpi/src/minimal.c ****  * SYSTem:ERRor[:NEXT]?
+  78:../Libraries/libscpi/src/minimal.c ****  * @param context
+  79:../Libraries/libscpi/src/minimal.c ****  * @return
+  80:../Libraries/libscpi/src/minimal.c ****  */
+  81:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_SystemErrorNextQ(scpi_t * context) {
+ 169              	 .loc 1 81 0
+ 170              	 .cfi_startproc
+ 171              	 
+ 172              	 
+ 173 0000 80B5     	 push {r7,lr}
+ 174              	.LCFI16:
+ 175              	 .cfi_def_cfa_offset 8
+ 176              	 .cfi_offset 7,-8
+ 177              	 .cfi_offset 14,-4
+ 178 0002 84B0     	 sub sp,sp,#16
+ 179              	.LCFI17:
+ 180              	 .cfi_def_cfa_offset 24
+ 181 0004 00AF     	 add r7,sp,#0
+ 182              	.LCFI18:
+ 183              	 .cfi_def_cfa_register 7
+ 184 0006 7860     	 str r0,[r7,#4]
+  82:../Libraries/libscpi/src/minimal.c ****     scpi_error_t error;
+  83:../Libraries/libscpi/src/minimal.c ****     SCPI_ErrorPop(context, &error);
+ 185              	 .loc 1 83 0
+ 186 0008 07F10C03 	 add r3,r7,#12
+ 187 000c 7868     	 ldr r0,[r7,#4]
+ 188 000e 1946     	 mov r1,r3
+ 189 0010 FFF7FEFF 	 bl SCPI_ErrorPop
+  84:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultError(context, &error);
+ 190              	 .loc 1 84 0
+ 191 0014 07F10C03 	 add r3,r7,#12
+ 192 0018 7868     	 ldr r0,[r7,#4]
+ 193 001a 1946     	 mov r1,r3
+ 194 001c FFF7FEFF 	 bl SCPI_ResultError
+  85:../Libraries/libscpi/src/minimal.c **** #if USE_DEVICE_DEPENDENT_ERROR_INFORMATION
+  86:../Libraries/libscpi/src/minimal.c ****     SCPIDEFINE_free(&context->error_info_heap, error.device_dependent_info, false);
+  87:../Libraries/libscpi/src/minimal.c **** #endif
+  88:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 195              	 .loc 1 88 0
+ 196 0020 0123     	 movs r3,#1
+ 197 0022 5BB2     	 sxtb r3,r3
+  89:../Libraries/libscpi/src/minimal.c **** }
+ 198              	 .loc 1 89 0
+ 199 0024 1846     	 mov r0,r3
+ 200 0026 1037     	 adds r7,r7,#16
+ 201              	.LCFI19:
+ 202              	 .cfi_def_cfa_offset 8
+ 203 0028 BD46     	 mov sp,r7
+ 204              	.LCFI20:
+ 205              	 .cfi_def_cfa_register 13
+ 206              	 
+ 207 002a 80BD     	 pop {r7,pc}
+ 208              	 .cfi_endproc
+ 209              	.LFE3:
+ 211              	 .section .text.SCPI_SystemErrorCountQ,"ax",%progbits
+ 212              	 .align 2
+ 213              	 .global SCPI_SystemErrorCountQ
+ 214              	 .thumb
+ 215              	 .thumb_func
+ 217              	SCPI_SystemErrorCountQ:
+ 218              	.LFB4:
+  90:../Libraries/libscpi/src/minimal.c **** 
+  91:../Libraries/libscpi/src/minimal.c **** /**
+  92:../Libraries/libscpi/src/minimal.c ****  * SYSTem:ERRor:COUNt?
+  93:../Libraries/libscpi/src/minimal.c ****  * @param context
+  94:../Libraries/libscpi/src/minimal.c ****  * @return
+  95:../Libraries/libscpi/src/minimal.c ****  */
+  96:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_SystemErrorCountQ(scpi_t * context) {
+ 219              	 .loc 1 96 0
+ 220              	 .cfi_startproc
+ 221              	 
+ 222              	 
+ 223 0000 80B5     	 push {r7,lr}
+ 224              	.LCFI21:
+ 225              	 .cfi_def_cfa_offset 8
+ 226              	 .cfi_offset 7,-8
+ 227              	 .cfi_offset 14,-4
+ 228 0002 82B0     	 sub sp,sp,#8
+ 229              	.LCFI22:
+ 230              	 .cfi_def_cfa_offset 16
+ 231 0004 00AF     	 add r7,sp,#0
+ 232              	.LCFI23:
+ 233              	 .cfi_def_cfa_register 7
+ 234 0006 7860     	 str r0,[r7,#4]
+  97:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultInt32(context, SCPI_ErrorCount(context));
+ 235              	 .loc 1 97 0
+ 236 0008 7868     	 ldr r0,[r7,#4]
+ 237 000a FFF7FEFF 	 bl SCPI_ErrorCount
+ 238 000e 0346     	 mov r3,r0
+ 239 0010 7868     	 ldr r0,[r7,#4]
+ 240 0012 1946     	 mov r1,r3
+ 241 0014 FFF7FEFF 	 bl SCPI_ResultInt32
+  98:../Libraries/libscpi/src/minimal.c **** 
+  99:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 242              	 .loc 1 99 0
+ 243 0018 0123     	 movs r3,#1
+ 244 001a 5BB2     	 sxtb r3,r3
+ 100:../Libraries/libscpi/src/minimal.c **** }
+ 245              	 .loc 1 100 0
+ 246 001c 1846     	 mov r0,r3
+ 247 001e 0837     	 adds r7,r7,#8
+ 248              	.LCFI24:
+ 249              	 .cfi_def_cfa_offset 8
+ 250 0020 BD46     	 mov sp,r7
+ 251              	.LCFI25:
+ 252              	 .cfi_def_cfa_register 13
+ 253              	 
+ 254 0022 80BD     	 pop {r7,pc}
+ 255              	 .cfi_endproc
+ 256              	.LFE4:
+ 258              	 .section .text.SCPI_StatusQuestionableConditionQ,"ax",%progbits
+ 259              	 .align 2
+ 260              	 .global SCPI_StatusQuestionableConditionQ
+ 261              	 .thumb
+ 262              	 .thumb_func
+ 264              	SCPI_StatusQuestionableConditionQ:
+ 265              	.LFB5:
+ 101:../Libraries/libscpi/src/minimal.c **** 
+ 102:../Libraries/libscpi/src/minimal.c **** /**
+ 103:../Libraries/libscpi/src/minimal.c ****  * STATus:QUEStionable:CONDition?
+ 104:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 105:../Libraries/libscpi/src/minimal.c ****  * @return
+ 106:../Libraries/libscpi/src/minimal.c ****  */
+ 107:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StatusQuestionableConditionQ(scpi_t * context) {
+ 266              	 .loc 1 107 0
+ 267              	 .cfi_startproc
+ 268              	 
+ 269              	 
+ 270 0000 80B5     	 push {r7,lr}
+ 271              	.LCFI26:
+ 272              	 .cfi_def_cfa_offset 8
+ 273              	 .cfi_offset 7,-8
+ 274              	 .cfi_offset 14,-4
+ 275 0002 82B0     	 sub sp,sp,#8
+ 276              	.LCFI27:
+ 277              	 .cfi_def_cfa_offset 16
+ 278 0004 00AF     	 add r7,sp,#0
+ 279              	.LCFI28:
+ 280              	 .cfi_def_cfa_register 7
+ 281 0006 7860     	 str r0,[r7,#4]
+ 108:../Libraries/libscpi/src/minimal.c ****     /* return value */
+ 109:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultInt32(context, SCPI_RegGet(context, SCPI_REG_QUESC));
+ 282              	 .loc 1 109 0
+ 283 0008 7868     	 ldr r0,[r7,#4]
+ 284 000a 0921     	 movs r1,#9
+ 285 000c FFF7FEFF 	 bl SCPI_RegGet
+ 286 0010 0346     	 mov r3,r0
+ 287 0012 7868     	 ldr r0,[r7,#4]
+ 288 0014 1946     	 mov r1,r3
+ 289 0016 FFF7FEFF 	 bl SCPI_ResultInt32
+ 110:../Libraries/libscpi/src/minimal.c **** 
+ 111:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 290              	 .loc 1 111 0
+ 291 001a 0123     	 movs r3,#1
+ 292 001c 5BB2     	 sxtb r3,r3
+ 112:../Libraries/libscpi/src/minimal.c **** }
+ 293              	 .loc 1 112 0
+ 294 001e 1846     	 mov r0,r3
+ 295 0020 0837     	 adds r7,r7,#8
+ 296              	.LCFI29:
+ 297              	 .cfi_def_cfa_offset 8
+ 298 0022 BD46     	 mov sp,r7
+ 299              	.LCFI30:
+ 300              	 .cfi_def_cfa_register 13
+ 301              	 
+ 302 0024 80BD     	 pop {r7,pc}
+ 303              	 .cfi_endproc
+ 304              	.LFE5:
+ 306 0026 00BF     	 .section .text.SCPI_StatusQuestionableEventQ,"ax",%progbits
+ 307              	 .align 2
+ 308              	 .global SCPI_StatusQuestionableEventQ
+ 309              	 .thumb
+ 310              	 .thumb_func
+ 312              	SCPI_StatusQuestionableEventQ:
+ 313              	.LFB6:
+ 113:../Libraries/libscpi/src/minimal.c **** 
+ 114:../Libraries/libscpi/src/minimal.c **** /**
+ 115:../Libraries/libscpi/src/minimal.c ****  * STATus:QUEStionable[:EVENt]?
+ 116:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 117:../Libraries/libscpi/src/minimal.c ****  * @return
+ 118:../Libraries/libscpi/src/minimal.c ****  */
+ 119:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StatusQuestionableEventQ(scpi_t * context) {
+ 314              	 .loc 1 119 0
+ 315              	 .cfi_startproc
+ 316              	 
+ 317              	 
+ 318 0000 80B5     	 push {r7,lr}
+ 319              	.LCFI31:
+ 320              	 .cfi_def_cfa_offset 8
+ 321              	 .cfi_offset 7,-8
+ 322              	 .cfi_offset 14,-4
+ 323 0002 82B0     	 sub sp,sp,#8
+ 324              	.LCFI32:
+ 325              	 .cfi_def_cfa_offset 16
+ 326 0004 00AF     	 add r7,sp,#0
+ 327              	.LCFI33:
+ 328              	 .cfi_def_cfa_register 7
+ 329 0006 7860     	 str r0,[r7,#4]
+ 120:../Libraries/libscpi/src/minimal.c ****     /* return value */
+ 121:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultInt32(context, SCPI_RegGet(context, SCPI_REG_QUES));
+ 330              	 .loc 1 121 0
+ 331 0008 7868     	 ldr r0,[r7,#4]
+ 332 000a 0721     	 movs r1,#7
+ 333 000c FFF7FEFF 	 bl SCPI_RegGet
+ 334 0010 0346     	 mov r3,r0
+ 335 0012 7868     	 ldr r0,[r7,#4]
+ 336 0014 1946     	 mov r1,r3
+ 337 0016 FFF7FEFF 	 bl SCPI_ResultInt32
+ 122:../Libraries/libscpi/src/minimal.c **** 
+ 123:../Libraries/libscpi/src/minimal.c ****     /* clear register */
+ 124:../Libraries/libscpi/src/minimal.c ****     SCPI_RegSet(context, SCPI_REG_QUES, 0);
+ 338              	 .loc 1 124 0
+ 339 001a 7868     	 ldr r0,[r7,#4]
+ 340 001c 0721     	 movs r1,#7
+ 341 001e 0022     	 movs r2,#0
+ 342 0020 FFF7FEFF 	 bl SCPI_RegSet
+ 125:../Libraries/libscpi/src/minimal.c **** 
+ 126:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 343              	 .loc 1 126 0
+ 344 0024 0123     	 movs r3,#1
+ 345 0026 5BB2     	 sxtb r3,r3
+ 127:../Libraries/libscpi/src/minimal.c **** }
+ 346              	 .loc 1 127 0
+ 347 0028 1846     	 mov r0,r3
+ 348 002a 0837     	 adds r7,r7,#8
+ 349              	.LCFI34:
+ 350              	 .cfi_def_cfa_offset 8
+ 351 002c BD46     	 mov sp,r7
+ 352              	.LCFI35:
+ 353              	 .cfi_def_cfa_register 13
+ 354              	 
+ 355 002e 80BD     	 pop {r7,pc}
+ 356              	 .cfi_endproc
+ 357              	.LFE6:
+ 359              	 .section .text.SCPI_StatusQuestionableEnableQ,"ax",%progbits
+ 360              	 .align 2
+ 361              	 .global SCPI_StatusQuestionableEnableQ
+ 362              	 .thumb
+ 363              	 .thumb_func
+ 365              	SCPI_StatusQuestionableEnableQ:
+ 366              	.LFB7:
+ 128:../Libraries/libscpi/src/minimal.c **** 
+ 129:../Libraries/libscpi/src/minimal.c **** /**
+ 130:../Libraries/libscpi/src/minimal.c ****  * STATus:QUEStionable:ENABle?
+ 131:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 132:../Libraries/libscpi/src/minimal.c ****  * @return
+ 133:../Libraries/libscpi/src/minimal.c ****  */
+ 134:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StatusQuestionableEnableQ(scpi_t * context) {
+ 367              	 .loc 1 134 0
+ 368              	 .cfi_startproc
+ 369              	 
+ 370              	 
+ 371 0000 80B5     	 push {r7,lr}
+ 372              	.LCFI36:
+ 373              	 .cfi_def_cfa_offset 8
+ 374              	 .cfi_offset 7,-8
+ 375              	 .cfi_offset 14,-4
+ 376 0002 82B0     	 sub sp,sp,#8
+ 377              	.LCFI37:
+ 378              	 .cfi_def_cfa_offset 16
+ 379 0004 00AF     	 add r7,sp,#0
+ 380              	.LCFI38:
+ 381              	 .cfi_def_cfa_register 7
+ 382 0006 7860     	 str r0,[r7,#4]
+ 135:../Libraries/libscpi/src/minimal.c ****     /* return value */
+ 136:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultInt32(context, SCPI_RegGet(context, SCPI_REG_QUESE));
+ 383              	 .loc 1 136 0
+ 384 0008 7868     	 ldr r0,[r7,#4]
+ 385 000a 0821     	 movs r1,#8
+ 386 000c FFF7FEFF 	 bl SCPI_RegGet
+ 387 0010 0346     	 mov r3,r0
+ 388 0012 7868     	 ldr r0,[r7,#4]
+ 389 0014 1946     	 mov r1,r3
+ 390 0016 FFF7FEFF 	 bl SCPI_ResultInt32
+ 137:../Libraries/libscpi/src/minimal.c **** 
+ 138:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 391              	 .loc 1 138 0
+ 392 001a 0123     	 movs r3,#1
+ 393 001c 5BB2     	 sxtb r3,r3
+ 139:../Libraries/libscpi/src/minimal.c **** }
+ 394              	 .loc 1 139 0
+ 395 001e 1846     	 mov r0,r3
+ 396 0020 0837     	 adds r7,r7,#8
+ 397              	.LCFI39:
+ 398              	 .cfi_def_cfa_offset 8
+ 399 0022 BD46     	 mov sp,r7
+ 400              	.LCFI40:
+ 401              	 .cfi_def_cfa_register 13
+ 402              	 
+ 403 0024 80BD     	 pop {r7,pc}
+ 404              	 .cfi_endproc
+ 405              	.LFE7:
+ 407 0026 00BF     	 .section .text.SCPI_StatusQuestionableEnable,"ax",%progbits
+ 408              	 .align 2
+ 409              	 .global SCPI_StatusQuestionableEnable
+ 410              	 .thumb
+ 411              	 .thumb_func
+ 413              	SCPI_StatusQuestionableEnable:
+ 414              	.LFB8:
+ 140:../Libraries/libscpi/src/minimal.c **** 
+ 141:../Libraries/libscpi/src/minimal.c **** /**
+ 142:../Libraries/libscpi/src/minimal.c ****  * STATus:QUEStionable:ENABle
+ 143:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 144:../Libraries/libscpi/src/minimal.c ****  * @return
+ 145:../Libraries/libscpi/src/minimal.c ****  */
+ 146:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StatusQuestionableEnable(scpi_t * context) {
+ 415              	 .loc 1 146 0
+ 416              	 .cfi_startproc
+ 417              	 
+ 418              	 
+ 419 0000 80B5     	 push {r7,lr}
+ 420              	.LCFI41:
+ 421              	 .cfi_def_cfa_offset 8
+ 422              	 .cfi_offset 7,-8
+ 423              	 .cfi_offset 14,-4
+ 424 0002 84B0     	 sub sp,sp,#16
+ 425              	.LCFI42:
+ 426              	 .cfi_def_cfa_offset 24
+ 427 0004 00AF     	 add r7,sp,#0
+ 428              	.LCFI43:
+ 429              	 .cfi_def_cfa_register 7
+ 430 0006 7860     	 str r0,[r7,#4]
+ 147:../Libraries/libscpi/src/minimal.c ****     int32_t new_QUESE;
+ 148:../Libraries/libscpi/src/minimal.c ****     if (SCPI_ParamInt32(context, &new_QUESE, TRUE)) {
+ 431              	 .loc 1 148 0
+ 432 0008 07F10C03 	 add r3,r7,#12
+ 433 000c 7868     	 ldr r0,[r7,#4]
+ 434 000e 1946     	 mov r1,r3
+ 435 0010 0122     	 movs r2,#1
+ 436 0012 FFF7FEFF 	 bl SCPI_ParamInt32
+ 437 0016 0346     	 mov r3,r0
+ 438 0018 002B     	 cmp r3,#0
+ 439 001a 06D0     	 beq .L20
+ 149:../Libraries/libscpi/src/minimal.c ****         SCPI_RegSet(context, SCPI_REG_QUESE, (scpi_reg_val_t) new_QUESE);
+ 440              	 .loc 1 149 0
+ 441 001c FB68     	 ldr r3,[r7,#12]
+ 442 001e 9BB2     	 uxth r3,r3
+ 443 0020 7868     	 ldr r0,[r7,#4]
+ 444 0022 0821     	 movs r1,#8
+ 445 0024 1A46     	 mov r2,r3
+ 446 0026 FFF7FEFF 	 bl SCPI_RegSet
+ 447              	.L20:
+ 150:../Libraries/libscpi/src/minimal.c ****     }
+ 151:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 448              	 .loc 1 151 0
+ 449 002a 0123     	 movs r3,#1
+ 450 002c 5BB2     	 sxtb r3,r3
+ 152:../Libraries/libscpi/src/minimal.c **** }
+ 451              	 .loc 1 152 0
+ 452 002e 1846     	 mov r0,r3
+ 453 0030 1037     	 adds r7,r7,#16
+ 454              	.LCFI44:
+ 455              	 .cfi_def_cfa_offset 8
+ 456 0032 BD46     	 mov sp,r7
+ 457              	.LCFI45:
+ 458              	 .cfi_def_cfa_register 13
+ 459              	 
+ 460 0034 80BD     	 pop {r7,pc}
+ 461              	 .cfi_endproc
+ 462              	.LFE8:
+ 464 0036 00BF     	 .section .text.SCPI_StatusOperationConditionQ,"ax",%progbits
+ 465              	 .align 2
+ 466              	 .global SCPI_StatusOperationConditionQ
+ 467              	 .thumb
+ 468              	 .thumb_func
+ 470              	SCPI_StatusOperationConditionQ:
+ 471              	.LFB9:
+ 153:../Libraries/libscpi/src/minimal.c **** 
+ 154:../Libraries/libscpi/src/minimal.c **** /**
+ 155:../Libraries/libscpi/src/minimal.c ****  * STATus:OPERation:CONDition?
+ 156:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 157:../Libraries/libscpi/src/minimal.c ****  * @return
+ 158:../Libraries/libscpi/src/minimal.c ****  */
+ 159:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StatusOperationConditionQ(scpi_t * context) {
+ 472              	 .loc 1 159 0
+ 473              	 .cfi_startproc
+ 474              	 
+ 475              	 
+ 476 0000 80B5     	 push {r7,lr}
+ 477              	.LCFI46:
+ 478              	 .cfi_def_cfa_offset 8
+ 479              	 .cfi_offset 7,-8
+ 480              	 .cfi_offset 14,-4
+ 481 0002 82B0     	 sub sp,sp,#8
+ 482              	.LCFI47:
+ 483              	 .cfi_def_cfa_offset 16
+ 484 0004 00AF     	 add r7,sp,#0
+ 485              	.LCFI48:
+ 486              	 .cfi_def_cfa_register 7
+ 487 0006 7860     	 str r0,[r7,#4]
+ 160:../Libraries/libscpi/src/minimal.c ****     /* return value */
+ 161:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultInt32(context, SCPI_RegGet(context, SCPI_REG_OPERC));
+ 488              	 .loc 1 161 0
+ 489 0008 7868     	 ldr r0,[r7,#4]
+ 490 000a 0621     	 movs r1,#6
+ 491 000c FFF7FEFF 	 bl SCPI_RegGet
+ 492 0010 0346     	 mov r3,r0
+ 493 0012 7868     	 ldr r0,[r7,#4]
+ 494 0014 1946     	 mov r1,r3
+ 495 0016 FFF7FEFF 	 bl SCPI_ResultInt32
+ 162:../Libraries/libscpi/src/minimal.c **** 
+ 163:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 496              	 .loc 1 163 0
+ 497 001a 0123     	 movs r3,#1
+ 498 001c 5BB2     	 sxtb r3,r3
+ 164:../Libraries/libscpi/src/minimal.c **** }
+ 499              	 .loc 1 164 0
+ 500 001e 1846     	 mov r0,r3
+ 501 0020 0837     	 adds r7,r7,#8
+ 502              	.LCFI49:
+ 503              	 .cfi_def_cfa_offset 8
+ 504 0022 BD46     	 mov sp,r7
+ 505              	.LCFI50:
+ 506              	 .cfi_def_cfa_register 13
+ 507              	 
+ 508 0024 80BD     	 pop {r7,pc}
+ 509              	 .cfi_endproc
+ 510              	.LFE9:
+ 512 0026 00BF     	 .section .text.SCPI_StatusOperationEventQ,"ax",%progbits
+ 513              	 .align 2
+ 514              	 .global SCPI_StatusOperationEventQ
+ 515              	 .thumb
+ 516              	 .thumb_func
+ 518              	SCPI_StatusOperationEventQ:
+ 519              	.LFB10:
+ 165:../Libraries/libscpi/src/minimal.c **** 
+ 166:../Libraries/libscpi/src/minimal.c **** /**
+ 167:../Libraries/libscpi/src/minimal.c ****  * STATus:OPERation[:EVENt]?
+ 168:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 169:../Libraries/libscpi/src/minimal.c ****  * @return
+ 170:../Libraries/libscpi/src/minimal.c ****  */
+ 171:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StatusOperationEventQ(scpi_t * context) {
+ 520              	 .loc 1 171 0
+ 521              	 .cfi_startproc
+ 522              	 
+ 523              	 
+ 524 0000 80B5     	 push {r7,lr}
+ 525              	.LCFI51:
+ 526              	 .cfi_def_cfa_offset 8
+ 527              	 .cfi_offset 7,-8
+ 528              	 .cfi_offset 14,-4
+ 529 0002 82B0     	 sub sp,sp,#8
+ 530              	.LCFI52:
+ 531              	 .cfi_def_cfa_offset 16
+ 532 0004 00AF     	 add r7,sp,#0
+ 533              	.LCFI53:
+ 534              	 .cfi_def_cfa_register 7
+ 535 0006 7860     	 str r0,[r7,#4]
+ 172:../Libraries/libscpi/src/minimal.c ****     /* return value */
+ 173:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultInt32(context, SCPI_RegGet(context, SCPI_REG_OPER));
+ 536              	 .loc 1 173 0
+ 537 0008 7868     	 ldr r0,[r7,#4]
+ 538 000a 0421     	 movs r1,#4
+ 539 000c FFF7FEFF 	 bl SCPI_RegGet
+ 540 0010 0346     	 mov r3,r0
+ 541 0012 7868     	 ldr r0,[r7,#4]
+ 542 0014 1946     	 mov r1,r3
+ 543 0016 FFF7FEFF 	 bl SCPI_ResultInt32
+ 174:../Libraries/libscpi/src/minimal.c **** 
+ 175:../Libraries/libscpi/src/minimal.c ****     /* clear register */
+ 176:../Libraries/libscpi/src/minimal.c ****     SCPI_RegSet(context, SCPI_REG_OPER, 0);
+ 544              	 .loc 1 176 0
+ 545 001a 7868     	 ldr r0,[r7,#4]
+ 546 001c 0421     	 movs r1,#4
+ 547 001e 0022     	 movs r2,#0
+ 548 0020 FFF7FEFF 	 bl SCPI_RegSet
+ 177:../Libraries/libscpi/src/minimal.c **** 
+ 178:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 549              	 .loc 1 178 0
+ 550 0024 0123     	 movs r3,#1
+ 551 0026 5BB2     	 sxtb r3,r3
+ 179:../Libraries/libscpi/src/minimal.c **** }
+ 552              	 .loc 1 179 0
+ 553 0028 1846     	 mov r0,r3
+ 554 002a 0837     	 adds r7,r7,#8
+ 555              	.LCFI54:
+ 556              	 .cfi_def_cfa_offset 8
+ 557 002c BD46     	 mov sp,r7
+ 558              	.LCFI55:
+ 559              	 .cfi_def_cfa_register 13
+ 560              	 
+ 561 002e 80BD     	 pop {r7,pc}
+ 562              	 .cfi_endproc
+ 563              	.LFE10:
+ 565              	 .section .text.SCPI_StatusOperationEnableQ,"ax",%progbits
+ 566              	 .align 2
+ 567              	 .global SCPI_StatusOperationEnableQ
+ 568              	 .thumb
+ 569              	 .thumb_func
+ 571              	SCPI_StatusOperationEnableQ:
+ 572              	.LFB11:
+ 180:../Libraries/libscpi/src/minimal.c **** 
+ 181:../Libraries/libscpi/src/minimal.c **** /**
+ 182:../Libraries/libscpi/src/minimal.c ****  * STATus:OPERation:ENABle?
+ 183:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 184:../Libraries/libscpi/src/minimal.c ****  * @return
+ 185:../Libraries/libscpi/src/minimal.c ****  */
+ 186:../Libraries/libscpi/src/minimal.c ****  scpi_result_t SCPI_StatusOperationEnableQ(scpi_t * context) {
+ 573              	 .loc 1 186 0
+ 574              	 .cfi_startproc
+ 575              	 
+ 576              	 
+ 577 0000 80B5     	 push {r7,lr}
+ 578              	.LCFI56:
+ 579              	 .cfi_def_cfa_offset 8
+ 580              	 .cfi_offset 7,-8
+ 581              	 .cfi_offset 14,-4
+ 582 0002 82B0     	 sub sp,sp,#8
+ 583              	.LCFI57:
+ 584              	 .cfi_def_cfa_offset 16
+ 585 0004 00AF     	 add r7,sp,#0
+ 586              	.LCFI58:
+ 587              	 .cfi_def_cfa_register 7
+ 588 0006 7860     	 str r0,[r7,#4]
+ 187:../Libraries/libscpi/src/minimal.c ****     /* return value */
+ 188:../Libraries/libscpi/src/minimal.c ****     SCPI_ResultInt32(context, SCPI_RegGet(context, SCPI_REG_OPERE));
+ 589              	 .loc 1 188 0
+ 590 0008 7868     	 ldr r0,[r7,#4]
+ 591 000a 0521     	 movs r1,#5
+ 592 000c FFF7FEFF 	 bl SCPI_RegGet
+ 593 0010 0346     	 mov r3,r0
+ 594 0012 7868     	 ldr r0,[r7,#4]
+ 595 0014 1946     	 mov r1,r3
+ 596 0016 FFF7FEFF 	 bl SCPI_ResultInt32
+ 189:../Libraries/libscpi/src/minimal.c **** 
+ 190:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 597              	 .loc 1 190 0
+ 598 001a 0123     	 movs r3,#1
+ 599 001c 5BB2     	 sxtb r3,r3
+ 191:../Libraries/libscpi/src/minimal.c **** }
+ 600              	 .loc 1 191 0
+ 601 001e 1846     	 mov r0,r3
+ 602 0020 0837     	 adds r7,r7,#8
+ 603              	.LCFI59:
+ 604              	 .cfi_def_cfa_offset 8
+ 605 0022 BD46     	 mov sp,r7
+ 606              	.LCFI60:
+ 607              	 .cfi_def_cfa_register 13
+ 608              	 
+ 609 0024 80BD     	 pop {r7,pc}
+ 610              	 .cfi_endproc
+ 611              	.LFE11:
+ 613 0026 00BF     	 .section .text.SCPI_StatusOperationEnable,"ax",%progbits
+ 614              	 .align 2
+ 615              	 .global SCPI_StatusOperationEnable
+ 616              	 .thumb
+ 617              	 .thumb_func
+ 619              	SCPI_StatusOperationEnable:
+ 620              	.LFB12:
+ 192:../Libraries/libscpi/src/minimal.c **** 
+ 193:../Libraries/libscpi/src/minimal.c **** /**
+ 194:../Libraries/libscpi/src/minimal.c ****  * STATus:OPERation:ENABle
+ 195:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 196:../Libraries/libscpi/src/minimal.c ****  * @return
+ 197:../Libraries/libscpi/src/minimal.c ****  */
+ 198:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StatusOperationEnable(scpi_t * context) {
+ 621              	 .loc 1 198 0
+ 622              	 .cfi_startproc
+ 623              	 
+ 624              	 
+ 625 0000 80B5     	 push {r7,lr}
+ 626              	.LCFI61:
+ 627              	 .cfi_def_cfa_offset 8
+ 628              	 .cfi_offset 7,-8
+ 629              	 .cfi_offset 14,-4
+ 630 0002 84B0     	 sub sp,sp,#16
+ 631              	.LCFI62:
+ 632              	 .cfi_def_cfa_offset 24
+ 633 0004 00AF     	 add r7,sp,#0
+ 634              	.LCFI63:
+ 635              	 .cfi_def_cfa_register 7
+ 636 0006 7860     	 str r0,[r7,#4]
+ 199:../Libraries/libscpi/src/minimal.c ****     int32_t new_OPERE;
+ 200:../Libraries/libscpi/src/minimal.c ****     if (SCPI_ParamInt32(context, &new_OPERE, TRUE)) {
+ 637              	 .loc 1 200 0
+ 638 0008 07F10C03 	 add r3,r7,#12
+ 639 000c 7868     	 ldr r0,[r7,#4]
+ 640 000e 1946     	 mov r1,r3
+ 641 0010 0122     	 movs r2,#1
+ 642 0012 FFF7FEFF 	 bl SCPI_ParamInt32
+ 643 0016 0346     	 mov r3,r0
+ 644 0018 002B     	 cmp r3,#0
+ 645 001a 06D0     	 beq .L29
+ 201:../Libraries/libscpi/src/minimal.c ****         SCPI_RegSet(context, SCPI_REG_OPERE, (scpi_reg_val_t) new_OPERE);
+ 646              	 .loc 1 201 0
+ 647 001c FB68     	 ldr r3,[r7,#12]
+ 648 001e 9BB2     	 uxth r3,r3
+ 649 0020 7868     	 ldr r0,[r7,#4]
+ 650 0022 0521     	 movs r1,#5
+ 651 0024 1A46     	 mov r2,r3
+ 652 0026 FFF7FEFF 	 bl SCPI_RegSet
+ 653              	.L29:
+ 202:../Libraries/libscpi/src/minimal.c ****     }
+ 203:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 654              	 .loc 1 203 0
+ 655 002a 0123     	 movs r3,#1
+ 656 002c 5BB2     	 sxtb r3,r3
+ 204:../Libraries/libscpi/src/minimal.c **** }
+ 657              	 .loc 1 204 0
+ 658 002e 1846     	 mov r0,r3
+ 659 0030 1037     	 adds r7,r7,#16
+ 660              	.LCFI64:
+ 661              	 .cfi_def_cfa_offset 8
+ 662 0032 BD46     	 mov sp,r7
+ 663              	.LCFI65:
+ 664              	 .cfi_def_cfa_register 13
+ 665              	 
+ 666 0034 80BD     	 pop {r7,pc}
+ 667              	 .cfi_endproc
+ 668              	.LFE12:
+ 670 0036 00BF     	 .section .text.SCPI_StatusPreset,"ax",%progbits
+ 671              	 .align 2
+ 672              	 .global SCPI_StatusPreset
+ 673              	 .thumb
+ 674              	 .thumb_func
+ 676              	SCPI_StatusPreset:
+ 677              	.LFB13:
+ 205:../Libraries/libscpi/src/minimal.c **** 
+ 206:../Libraries/libscpi/src/minimal.c **** /**
+ 207:../Libraries/libscpi/src/minimal.c ****  * STATus:PRESet
+ 208:../Libraries/libscpi/src/minimal.c ****  * @param context
+ 209:../Libraries/libscpi/src/minimal.c ****  * @return
+ 210:../Libraries/libscpi/src/minimal.c ****  */
+ 211:../Libraries/libscpi/src/minimal.c **** scpi_result_t SCPI_StatusPreset(scpi_t * context) {
+ 678              	 .loc 1 211 0
+ 679              	 .cfi_startproc
+ 680              	 
+ 681              	 
+ 682 0000 80B5     	 push {r7,lr}
+ 683              	.LCFI66:
+ 684              	 .cfi_def_cfa_offset 8
+ 685              	 .cfi_offset 7,-8
+ 686              	 .cfi_offset 14,-4
+ 687 0002 82B0     	 sub sp,sp,#8
+ 688              	.LCFI67:
+ 689              	 .cfi_def_cfa_offset 16
+ 690 0004 00AF     	 add r7,sp,#0
+ 691              	.LCFI68:
+ 692              	 .cfi_def_cfa_register 7
+ 693 0006 7860     	 str r0,[r7,#4]
+ 212:../Libraries/libscpi/src/minimal.c ****     /* clear STATUS:... */
+ 213:../Libraries/libscpi/src/minimal.c ****     SCPI_RegSet(context, SCPI_REG_QUES, 0);
+ 694              	 .loc 1 213 0
+ 695 0008 7868     	 ldr r0,[r7,#4]
+ 696 000a 0721     	 movs r1,#7
+ 697 000c 0022     	 movs r2,#0
+ 698 000e FFF7FEFF 	 bl SCPI_RegSet
+ 214:../Libraries/libscpi/src/minimal.c ****     return SCPI_RES_OK;
+ 699              	 .loc 1 214 0
+ 700 0012 0123     	 movs r3,#1
+ 701 0014 5BB2     	 sxtb r3,r3
+ 215:../Libraries/libscpi/src/minimal.c **** }
+ 702              	 .loc 1 215 0
+ 703 0016 1846     	 mov r0,r3
+ 704 0018 0837     	 adds r7,r7,#8
+ 705              	.LCFI69:
+ 706              	 .cfi_def_cfa_offset 8
+ 707 001a BD46     	 mov sp,r7
+ 708              	.LCFI70:
+ 709              	 .cfi_def_cfa_register 13
+ 710              	 
+ 711 001c 80BD     	 pop {r7,pc}
+ 712              	 .cfi_endproc
+ 713              	.LFE13:
+ 715 001e 00BF     	 .text
+ 716              	.Letext0:
+ 717              	 .file 2 "c:\\infineon\\tools\\dave ide\\4.5.0.202105191637\\eclipse\\arm-gcc-49\\lib\\gcc\\arm-none-eabi\\4.9.3\\include\\stddef.h"
+ 718              	 .file 3 "c:\\infineon\\tools\\dave ide\\4.5.0.202105191637\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 719              	 .file 4 "c:\\infineon\\tools\\dave ide\\4.5.0.202105191637\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 720              	 .file 5 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Libraries/libscpi/inc/scpi/types.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 minimal.c
+    {standard input}:20     .text.SCPI_Stub:00000000 $t
+    {standard input}:25     .text.SCPI_Stub:00000000 SCPI_Stub
+    {standard input}:65     .text.SCPI_StubQ:00000000 $t
+    {standard input}:70     .text.SCPI_StubQ:00000000 SCPI_StubQ
+    {standard input}:109    .rodata:00000000 $d
+    {standard input}:113    .text.SCPI_SystemVersionQ:00000000 $t
+    {standard input}:118    .text.SCPI_SystemVersionQ:00000000 SCPI_SystemVersionQ
+    {standard input}:157    .text.SCPI_SystemVersionQ:00000020 $d
+    {standard input}:162    .text.SCPI_SystemErrorNextQ:00000000 $t
+    {standard input}:167    .text.SCPI_SystemErrorNextQ:00000000 SCPI_SystemErrorNextQ
+    {standard input}:212    .text.SCPI_SystemErrorCountQ:00000000 $t
+    {standard input}:217    .text.SCPI_SystemErrorCountQ:00000000 SCPI_SystemErrorCountQ
+    {standard input}:259    .text.SCPI_StatusQuestionableConditionQ:00000000 $t
+    {standard input}:264    .text.SCPI_StatusQuestionableConditionQ:00000000 SCPI_StatusQuestionableConditionQ
+    {standard input}:307    .text.SCPI_StatusQuestionableEventQ:00000000 $t
+    {standard input}:312    .text.SCPI_StatusQuestionableEventQ:00000000 SCPI_StatusQuestionableEventQ
+    {standard input}:360    .text.SCPI_StatusQuestionableEnableQ:00000000 $t
+    {standard input}:365    .text.SCPI_StatusQuestionableEnableQ:00000000 SCPI_StatusQuestionableEnableQ
+    {standard input}:408    .text.SCPI_StatusQuestionableEnable:00000000 $t
+    {standard input}:413    .text.SCPI_StatusQuestionableEnable:00000000 SCPI_StatusQuestionableEnable
+    {standard input}:465    .text.SCPI_StatusOperationConditionQ:00000000 $t
+    {standard input}:470    .text.SCPI_StatusOperationConditionQ:00000000 SCPI_StatusOperationConditionQ
+    {standard input}:513    .text.SCPI_StatusOperationEventQ:00000000 $t
+    {standard input}:518    .text.SCPI_StatusOperationEventQ:00000000 SCPI_StatusOperationEventQ
+    {standard input}:566    .text.SCPI_StatusOperationEnableQ:00000000 $t
+    {standard input}:571    .text.SCPI_StatusOperationEnableQ:00000000 SCPI_StatusOperationEnableQ
+    {standard input}:614    .text.SCPI_StatusOperationEnable:00000000 $t
+    {standard input}:619    .text.SCPI_StatusOperationEnable:00000000 SCPI_StatusOperationEnable
+    {standard input}:671    .text.SCPI_StatusPreset:00000000 $t
+    {standard input}:676    .text.SCPI_StatusPreset:00000000 SCPI_StatusPreset
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+SCPI_ResultInt32
+SCPI_ResultCharacters
+SCPI_ErrorPop
+SCPI_ResultError
+SCPI_ErrorCount
+SCPI_RegGet
+SCPI_RegSet
+SCPI_ParamInt32

@@ -1,0 +1,727 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "fifo.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .section .text.fifo_init,"ax",%progbits
+  20              	 .align 2
+  21              	 .global fifo_init
+  22              	 .hidden fifo_init
+  23              	 .thumb
+  24              	 .thumb_func
+  26              	fifo_init:
+  27              	.LFB0:
+  28              	 .file 1 "../Libraries/libscpi/src/fifo.c"
+   1:../Libraries/libscpi/src/fifo.c **** /*-
+   2:../Libraries/libscpi/src/fifo.c ****  * BSD 2-Clause License
+   3:../Libraries/libscpi/src/fifo.c ****  *
+   4:../Libraries/libscpi/src/fifo.c ****  * Copyright (c) 2012-2018, Jan Breuer
+   5:../Libraries/libscpi/src/fifo.c ****  * All rights reserved.
+   6:../Libraries/libscpi/src/fifo.c ****  *
+   7:../Libraries/libscpi/src/fifo.c ****  * Redistribution and use in source and binary forms, with or without
+   8:../Libraries/libscpi/src/fifo.c ****  * modification, are permitted provided that the following conditions are met:
+   9:../Libraries/libscpi/src/fifo.c ****  *
+  10:../Libraries/libscpi/src/fifo.c ****  * * Redistributions of source code must retain the above copyright notice, this
+  11:../Libraries/libscpi/src/fifo.c ****  *   list of conditions and the following disclaimer.
+  12:../Libraries/libscpi/src/fifo.c ****  *
+  13:../Libraries/libscpi/src/fifo.c ****  * * Redistributions in binary form must reproduce the above copyright notice,
+  14:../Libraries/libscpi/src/fifo.c ****  *   this list of conditions and the following disclaimer in the documentation
+  15:../Libraries/libscpi/src/fifo.c ****  *   and/or other materials provided with the distribution.
+  16:../Libraries/libscpi/src/fifo.c ****  *
+  17:../Libraries/libscpi/src/fifo.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  18:../Libraries/libscpi/src/fifo.c ****  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  19:../Libraries/libscpi/src/fifo.c ****  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  20:../Libraries/libscpi/src/fifo.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  21:../Libraries/libscpi/src/fifo.c ****  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  22:../Libraries/libscpi/src/fifo.c ****  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  23:../Libraries/libscpi/src/fifo.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  24:../Libraries/libscpi/src/fifo.c ****  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  25:../Libraries/libscpi/src/fifo.c ****  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  26:../Libraries/libscpi/src/fifo.c ****  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  27:../Libraries/libscpi/src/fifo.c ****  */
+  28:../Libraries/libscpi/src/fifo.c **** 
+  29:../Libraries/libscpi/src/fifo.c **** #include "fifo_private.h"
+  30:../Libraries/libscpi/src/fifo.c **** 
+  31:../Libraries/libscpi/src/fifo.c **** /**
+  32:../Libraries/libscpi/src/fifo.c ****  * Initialize fifo
+  33:../Libraries/libscpi/src/fifo.c ****  * @param fifo
+  34:../Libraries/libscpi/src/fifo.c ****  */
+  35:../Libraries/libscpi/src/fifo.c **** void fifo_init(scpi_fifo_t * fifo, scpi_error_t * data, int16_t size) {
+  29              	 .loc 1 35 0
+  30              	 .cfi_startproc
+  31              	 
+  32              	 
+  33              	 
+  34 0000 80B4     	 push {r7}
+  35              	.LCFI0:
+  36              	 .cfi_def_cfa_offset 4
+  37              	 .cfi_offset 7,-4
+  38 0002 85B0     	 sub sp,sp,#20
+  39              	.LCFI1:
+  40              	 .cfi_def_cfa_offset 24
+  41 0004 00AF     	 add r7,sp,#0
+  42              	.LCFI2:
+  43              	 .cfi_def_cfa_register 7
+  44 0006 F860     	 str r0,[r7,#12]
+  45 0008 B960     	 str r1,[r7,#8]
+  46 000a 1346     	 mov r3,r2
+  47 000c FB80     	 strh r3,[r7,#6]
+  36:../Libraries/libscpi/src/fifo.c ****     fifo->wr = 0;
+  48              	 .loc 1 36 0
+  49 000e FB68     	 ldr r3,[r7,#12]
+  50 0010 0022     	 movs r2,#0
+  51 0012 1A80     	 strh r2,[r3]
+  37:../Libraries/libscpi/src/fifo.c ****     fifo->rd = 0;
+  52              	 .loc 1 37 0
+  53 0014 FB68     	 ldr r3,[r7,#12]
+  54 0016 0022     	 movs r2,#0
+  55 0018 5A80     	 strh r2,[r3,#2]
+  38:../Libraries/libscpi/src/fifo.c ****     fifo->count = 0;
+  56              	 .loc 1 38 0
+  57 001a FB68     	 ldr r3,[r7,#12]
+  58 001c 0022     	 movs r2,#0
+  59 001e 9A80     	 strh r2,[r3,#4]
+  39:../Libraries/libscpi/src/fifo.c ****     fifo->data = data;
+  60              	 .loc 1 39 0
+  61 0020 FB68     	 ldr r3,[r7,#12]
+  62 0022 BA68     	 ldr r2,[r7,#8]
+  63 0024 9A60     	 str r2,[r3,#8]
+  40:../Libraries/libscpi/src/fifo.c ****     fifo->size = size;
+  64              	 .loc 1 40 0
+  65 0026 FB68     	 ldr r3,[r7,#12]
+  66 0028 FA88     	 ldrh r2,[r7,#6]
+  67 002a DA80     	 strh r2,[r3,#6]
+  41:../Libraries/libscpi/src/fifo.c **** }
+  68              	 .loc 1 41 0
+  69 002c 1437     	 adds r7,r7,#20
+  70              	.LCFI3:
+  71              	 .cfi_def_cfa_offset 4
+  72 002e BD46     	 mov sp,r7
+  73              	.LCFI4:
+  74              	 .cfi_def_cfa_register 13
+  75              	 
+  76 0030 5DF8047B 	 ldr r7,[sp],#4
+  77              	.LCFI5:
+  78              	 .cfi_restore 7
+  79              	 .cfi_def_cfa_offset 0
+  80 0034 7047     	 bx lr
+  81              	 .cfi_endproc
+  82              	.LFE0:
+  84 0036 00BF     	 .section .text.fifo_clear,"ax",%progbits
+  85              	 .align 2
+  86              	 .global fifo_clear
+  87              	 .hidden fifo_clear
+  88              	 .thumb
+  89              	 .thumb_func
+  91              	fifo_clear:
+  92              	.LFB1:
+  42:../Libraries/libscpi/src/fifo.c **** 
+  43:../Libraries/libscpi/src/fifo.c **** /**
+  44:../Libraries/libscpi/src/fifo.c ****  * Empty fifo
+  45:../Libraries/libscpi/src/fifo.c ****  * @param fifo
+  46:../Libraries/libscpi/src/fifo.c ****  */
+  47:../Libraries/libscpi/src/fifo.c **** void fifo_clear(scpi_fifo_t * fifo) {
+  93              	 .loc 1 47 0
+  94              	 .cfi_startproc
+  95              	 
+  96              	 
+  97              	 
+  98 0000 80B4     	 push {r7}
+  99              	.LCFI6:
+ 100              	 .cfi_def_cfa_offset 4
+ 101              	 .cfi_offset 7,-4
+ 102 0002 83B0     	 sub sp,sp,#12
+ 103              	.LCFI7:
+ 104              	 .cfi_def_cfa_offset 16
+ 105 0004 00AF     	 add r7,sp,#0
+ 106              	.LCFI8:
+ 107              	 .cfi_def_cfa_register 7
+ 108 0006 7860     	 str r0,[r7,#4]
+  48:../Libraries/libscpi/src/fifo.c ****     fifo->wr = 0;
+ 109              	 .loc 1 48 0
+ 110 0008 7B68     	 ldr r3,[r7,#4]
+ 111 000a 0022     	 movs r2,#0
+ 112 000c 1A80     	 strh r2,[r3]
+  49:../Libraries/libscpi/src/fifo.c ****     fifo->rd = 0;
+ 113              	 .loc 1 49 0
+ 114 000e 7B68     	 ldr r3,[r7,#4]
+ 115 0010 0022     	 movs r2,#0
+ 116 0012 5A80     	 strh r2,[r3,#2]
+  50:../Libraries/libscpi/src/fifo.c ****     fifo->count = 0;
+ 117              	 .loc 1 50 0
+ 118 0014 7B68     	 ldr r3,[r7,#4]
+ 119 0016 0022     	 movs r2,#0
+ 120 0018 9A80     	 strh r2,[r3,#4]
+  51:../Libraries/libscpi/src/fifo.c **** }
+ 121              	 .loc 1 51 0
+ 122 001a 0C37     	 adds r7,r7,#12
+ 123              	.LCFI9:
+ 124              	 .cfi_def_cfa_offset 4
+ 125 001c BD46     	 mov sp,r7
+ 126              	.LCFI10:
+ 127              	 .cfi_def_cfa_register 13
+ 128              	 
+ 129 001e 5DF8047B 	 ldr r7,[sp],#4
+ 130              	.LCFI11:
+ 131              	 .cfi_restore 7
+ 132              	 .cfi_def_cfa_offset 0
+ 133 0022 7047     	 bx lr
+ 134              	 .cfi_endproc
+ 135              	.LFE1:
+ 137              	 .section .text.fifo_is_empty,"ax",%progbits
+ 138              	 .align 2
+ 139              	 .global fifo_is_empty
+ 140              	 .hidden fifo_is_empty
+ 141              	 .thumb
+ 142              	 .thumb_func
+ 144              	fifo_is_empty:
+ 145              	.LFB2:
+  52:../Libraries/libscpi/src/fifo.c **** 
+  53:../Libraries/libscpi/src/fifo.c **** /**
+  54:../Libraries/libscpi/src/fifo.c ****  * Test if fifo is empty
+  55:../Libraries/libscpi/src/fifo.c ****  * @param fifo
+  56:../Libraries/libscpi/src/fifo.c ****  * @return
+  57:../Libraries/libscpi/src/fifo.c ****  */
+  58:../Libraries/libscpi/src/fifo.c **** scpi_bool_t fifo_is_empty(scpi_fifo_t * fifo) {
+ 146              	 .loc 1 58 0
+ 147              	 .cfi_startproc
+ 148              	 
+ 149              	 
+ 150              	 
+ 151 0000 80B4     	 push {r7}
+ 152              	.LCFI12:
+ 153              	 .cfi_def_cfa_offset 4
+ 154              	 .cfi_offset 7,-4
+ 155 0002 83B0     	 sub sp,sp,#12
+ 156              	.LCFI13:
+ 157              	 .cfi_def_cfa_offset 16
+ 158 0004 00AF     	 add r7,sp,#0
+ 159              	.LCFI14:
+ 160              	 .cfi_def_cfa_register 7
+ 161 0006 7860     	 str r0,[r7,#4]
+  59:../Libraries/libscpi/src/fifo.c ****     return fifo->count == 0;
+ 162              	 .loc 1 59 0
+ 163 0008 7B68     	 ldr r3,[r7,#4]
+ 164 000a 9B88     	 ldrh r3,[r3,#4]
+ 165 000c 1BB2     	 sxth r3,r3
+ 166 000e 002B     	 cmp r3,#0
+ 167 0010 0CBF     	 ite eq
+ 168 0012 0123     	 moveq r3,#1
+ 169 0014 0023     	 movne r3,#0
+ 170 0016 DBB2     	 uxtb r3,r3
+  60:../Libraries/libscpi/src/fifo.c **** }
+ 171              	 .loc 1 60 0
+ 172 0018 1846     	 mov r0,r3
+ 173 001a 0C37     	 adds r7,r7,#12
+ 174              	.LCFI15:
+ 175              	 .cfi_def_cfa_offset 4
+ 176 001c BD46     	 mov sp,r7
+ 177              	.LCFI16:
+ 178              	 .cfi_def_cfa_register 13
+ 179              	 
+ 180 001e 5DF8047B 	 ldr r7,[sp],#4
+ 181              	.LCFI17:
+ 182              	 .cfi_restore 7
+ 183              	 .cfi_def_cfa_offset 0
+ 184 0022 7047     	 bx lr
+ 185              	 .cfi_endproc
+ 186              	.LFE2:
+ 188              	 .section .text.fifo_is_full,"ax",%progbits
+ 189              	 .align 2
+ 190              	 .global fifo_is_full
+ 191              	 .hidden fifo_is_full
+ 192              	 .thumb
+ 193              	 .thumb_func
+ 195              	fifo_is_full:
+ 196              	.LFB3:
+  61:../Libraries/libscpi/src/fifo.c **** 
+  62:../Libraries/libscpi/src/fifo.c **** /**
+  63:../Libraries/libscpi/src/fifo.c ****  * Test if fifo is full
+  64:../Libraries/libscpi/src/fifo.c ****  * @param fifo
+  65:../Libraries/libscpi/src/fifo.c ****  * @return
+  66:../Libraries/libscpi/src/fifo.c ****  */
+  67:../Libraries/libscpi/src/fifo.c **** scpi_bool_t fifo_is_full(scpi_fifo_t * fifo) {
+ 197              	 .loc 1 67 0
+ 198              	 .cfi_startproc
+ 199              	 
+ 200              	 
+ 201              	 
+ 202 0000 80B4     	 push {r7}
+ 203              	.LCFI18:
+ 204              	 .cfi_def_cfa_offset 4
+ 205              	 .cfi_offset 7,-4
+ 206 0002 83B0     	 sub sp,sp,#12
+ 207              	.LCFI19:
+ 208              	 .cfi_def_cfa_offset 16
+ 209 0004 00AF     	 add r7,sp,#0
+ 210              	.LCFI20:
+ 211              	 .cfi_def_cfa_register 7
+ 212 0006 7860     	 str r0,[r7,#4]
+  68:../Libraries/libscpi/src/fifo.c ****     return fifo->count == fifo->size;
+ 213              	 .loc 1 68 0
+ 214 0008 7B68     	 ldr r3,[r7,#4]
+ 215 000a 9A88     	 ldrh r2,[r3,#4]
+ 216 000c 7B68     	 ldr r3,[r7,#4]
+ 217 000e DB88     	 ldrh r3,[r3,#6]
+ 218 0010 12B2     	 sxth r2,r2
+ 219 0012 1BB2     	 sxth r3,r3
+ 220 0014 9A42     	 cmp r2,r3
+ 221 0016 0CBF     	 ite eq
+ 222 0018 0123     	 moveq r3,#1
+ 223 001a 0023     	 movne r3,#0
+ 224 001c DBB2     	 uxtb r3,r3
+  69:../Libraries/libscpi/src/fifo.c **** }
+ 225              	 .loc 1 69 0
+ 226 001e 1846     	 mov r0,r3
+ 227 0020 0C37     	 adds r7,r7,#12
+ 228              	.LCFI21:
+ 229              	 .cfi_def_cfa_offset 4
+ 230 0022 BD46     	 mov sp,r7
+ 231              	.LCFI22:
+ 232              	 .cfi_def_cfa_register 13
+ 233              	 
+ 234 0024 5DF8047B 	 ldr r7,[sp],#4
+ 235              	.LCFI23:
+ 236              	 .cfi_restore 7
+ 237              	 .cfi_def_cfa_offset 0
+ 238 0028 7047     	 bx lr
+ 239              	 .cfi_endproc
+ 240              	.LFE3:
+ 242 002a 00BF     	 .section .text.fifo_add,"ax",%progbits
+ 243              	 .align 2
+ 244              	 .global fifo_add
+ 245              	 .hidden fifo_add
+ 246              	 .thumb
+ 247              	 .thumb_func
+ 249              	fifo_add:
+ 250              	.LFB4:
+  70:../Libraries/libscpi/src/fifo.c **** 
+  71:../Libraries/libscpi/src/fifo.c **** /**
+  72:../Libraries/libscpi/src/fifo.c ****  * Add element to fifo. If fifo is full, return FALSE.
+  73:../Libraries/libscpi/src/fifo.c ****  * @param fifo
+  74:../Libraries/libscpi/src/fifo.c ****  * @param err
+  75:../Libraries/libscpi/src/fifo.c ****  * @param info
+  76:../Libraries/libscpi/src/fifo.c ****  * @return
+  77:../Libraries/libscpi/src/fifo.c ****  */
+  78:../Libraries/libscpi/src/fifo.c **** scpi_bool_t fifo_add(scpi_fifo_t * fifo, const scpi_error_t * value) {
+ 251              	 .loc 1 78 0
+ 252              	 .cfi_startproc
+ 253              	 
+ 254              	 
+ 255 0000 80B5     	 push {r7,lr}
+ 256              	.LCFI24:
+ 257              	 .cfi_def_cfa_offset 8
+ 258              	 .cfi_offset 7,-8
+ 259              	 .cfi_offset 14,-4
+ 260 0002 82B0     	 sub sp,sp,#8
+ 261              	.LCFI25:
+ 262              	 .cfi_def_cfa_offset 16
+ 263 0004 00AF     	 add r7,sp,#0
+ 264              	.LCFI26:
+ 265              	 .cfi_def_cfa_register 7
+ 266 0006 7860     	 str r0,[r7,#4]
+ 267 0008 3960     	 str r1,[r7]
+  79:../Libraries/libscpi/src/fifo.c ****     /* FIFO full? */
+  80:../Libraries/libscpi/src/fifo.c ****     if (fifo_is_full(fifo)) {
+ 268              	 .loc 1 80 0
+ 269 000a 7868     	 ldr r0,[r7,#4]
+ 270 000c FFF7FEFF 	 bl fifo_is_full
+ 271 0010 0346     	 mov r3,r0
+ 272 0012 002B     	 cmp r3,#0
+ 273 0014 01D0     	 beq .L8
+  81:../Libraries/libscpi/src/fifo.c ****         return FALSE;
+ 274              	 .loc 1 81 0
+ 275 0016 0023     	 movs r3,#0
+ 276 0018 26E0     	 b .L9
+ 277              	.L8:
+  82:../Libraries/libscpi/src/fifo.c ****     }
+  83:../Libraries/libscpi/src/fifo.c ****     if (!value) {
+ 278              	 .loc 1 83 0
+ 279 001a 3B68     	 ldr r3,[r7]
+ 280 001c 002B     	 cmp r3,#0
+ 281 001e 01D1     	 bne .L10
+  84:../Libraries/libscpi/src/fifo.c ****         return FALSE;
+ 282              	 .loc 1 84 0
+ 283 0020 0023     	 movs r3,#0
+ 284 0022 21E0     	 b .L9
+ 285              	.L10:
+  85:../Libraries/libscpi/src/fifo.c ****     }
+  86:../Libraries/libscpi/src/fifo.c **** 
+  87:../Libraries/libscpi/src/fifo.c ****     fifo->data[fifo->wr] = *value;
+ 286              	 .loc 1 87 0
+ 287 0024 7B68     	 ldr r3,[r7,#4]
+ 288 0026 9A68     	 ldr r2,[r3,#8]
+ 289 0028 7B68     	 ldr r3,[r7,#4]
+ 290 002a 1B88     	 ldrh r3,[r3]
+ 291 002c 1BB2     	 sxth r3,r3
+ 292 002e 5B00     	 lsls r3,r3,#1
+ 293 0030 1344     	 add r3,r3,r2
+ 294 0032 3A68     	 ldr r2,[r7]
+ 295 0034 1288     	 ldrh r2,[r2]
+ 296 0036 1A80     	 strh r2,[r3]
+  88:../Libraries/libscpi/src/fifo.c ****     fifo->wr = (fifo->wr + 1) % (fifo->size);
+ 297              	 .loc 1 88 0
+ 298 0038 7B68     	 ldr r3,[r7,#4]
+ 299 003a 1B88     	 ldrh r3,[r3]
+ 300 003c 1BB2     	 sxth r3,r3
+ 301 003e 0133     	 adds r3,r3,#1
+ 302 0040 7A68     	 ldr r2,[r7,#4]
+ 303 0042 D288     	 ldrh r2,[r2,#6]
+ 304 0044 12B2     	 sxth r2,r2
+ 305 0046 93FBF2F1 	 sdiv r1,r3,r2
+ 306 004a 02FB01F2 	 mul r2,r2,r1
+ 307 004e 9B1A     	 subs r3,r3,r2
+ 308 0050 9AB2     	 uxth r2,r3
+ 309 0052 7B68     	 ldr r3,[r7,#4]
+ 310 0054 1A80     	 strh r2,[r3]
+  89:../Libraries/libscpi/src/fifo.c ****     fifo->count += 1;
+ 311              	 .loc 1 89 0
+ 312 0056 7B68     	 ldr r3,[r7,#4]
+ 313 0058 9B88     	 ldrh r3,[r3,#4]
+ 314 005a 9BB2     	 uxth r3,r3
+ 315 005c 0133     	 adds r3,r3,#1
+ 316 005e 9BB2     	 uxth r3,r3
+ 317 0060 9AB2     	 uxth r2,r3
+ 318 0062 7B68     	 ldr r3,[r7,#4]
+ 319 0064 9A80     	 strh r2,[r3,#4]
+  90:../Libraries/libscpi/src/fifo.c ****     return TRUE;
+ 320              	 .loc 1 90 0
+ 321 0066 0123     	 movs r3,#1
+ 322              	.L9:
+  91:../Libraries/libscpi/src/fifo.c **** }
+ 323              	 .loc 1 91 0
+ 324 0068 1846     	 mov r0,r3
+ 325 006a 0837     	 adds r7,r7,#8
+ 326              	.LCFI27:
+ 327              	 .cfi_def_cfa_offset 8
+ 328 006c BD46     	 mov sp,r7
+ 329              	.LCFI28:
+ 330              	 .cfi_def_cfa_register 13
+ 331              	 
+ 332 006e 80BD     	 pop {r7,pc}
+ 333              	 .cfi_endproc
+ 334              	.LFE4:
+ 336              	 .section .text.fifo_remove,"ax",%progbits
+ 337              	 .align 2
+ 338              	 .global fifo_remove
+ 339              	 .hidden fifo_remove
+ 340              	 .thumb
+ 341              	 .thumb_func
+ 343              	fifo_remove:
+ 344              	.LFB5:
+  92:../Libraries/libscpi/src/fifo.c **** 
+  93:../Libraries/libscpi/src/fifo.c **** /**
+  94:../Libraries/libscpi/src/fifo.c ****  * Remove element form fifo
+  95:../Libraries/libscpi/src/fifo.c ****  * @param fifo
+  96:../Libraries/libscpi/src/fifo.c ****  * @param value
+  97:../Libraries/libscpi/src/fifo.c ****  * @return FALSE - fifo is empty
+  98:../Libraries/libscpi/src/fifo.c ****  */
+  99:../Libraries/libscpi/src/fifo.c **** scpi_bool_t fifo_remove(scpi_fifo_t * fifo, scpi_error_t * value) {
+ 345              	 .loc 1 99 0
+ 346              	 .cfi_startproc
+ 347              	 
+ 348              	 
+ 349 0000 80B5     	 push {r7,lr}
+ 350              	.LCFI29:
+ 351              	 .cfi_def_cfa_offset 8
+ 352              	 .cfi_offset 7,-8
+ 353              	 .cfi_offset 14,-4
+ 354 0002 82B0     	 sub sp,sp,#8
+ 355              	.LCFI30:
+ 356              	 .cfi_def_cfa_offset 16
+ 357 0004 00AF     	 add r7,sp,#0
+ 358              	.LCFI31:
+ 359              	 .cfi_def_cfa_register 7
+ 360 0006 7860     	 str r0,[r7,#4]
+ 361 0008 3960     	 str r1,[r7]
+ 100:../Libraries/libscpi/src/fifo.c ****     /* FIFO empty? */
+ 101:../Libraries/libscpi/src/fifo.c ****     if (fifo_is_empty(fifo)) {
+ 362              	 .loc 1 101 0
+ 363 000a 7868     	 ldr r0,[r7,#4]
+ 364 000c FFF7FEFF 	 bl fifo_is_empty
+ 365 0010 0346     	 mov r3,r0
+ 366 0012 002B     	 cmp r3,#0
+ 367 0014 01D0     	 beq .L12
+ 102:../Libraries/libscpi/src/fifo.c ****         return FALSE;
+ 368              	 .loc 1 102 0
+ 369 0016 0023     	 movs r3,#0
+ 370 0018 24E0     	 b .L13
+ 371              	.L12:
+ 103:../Libraries/libscpi/src/fifo.c ****     }
+ 104:../Libraries/libscpi/src/fifo.c **** 
+ 105:../Libraries/libscpi/src/fifo.c ****     if (value) {
+ 372              	 .loc 1 105 0
+ 373 001a 3B68     	 ldr r3,[r7]
+ 374 001c 002B     	 cmp r3,#0
+ 375 001e 09D0     	 beq .L14
+ 106:../Libraries/libscpi/src/fifo.c ****         *value = fifo->data[fifo->rd];
+ 376              	 .loc 1 106 0
+ 377 0020 7B68     	 ldr r3,[r7,#4]
+ 378 0022 9A68     	 ldr r2,[r3,#8]
+ 379 0024 7B68     	 ldr r3,[r7,#4]
+ 380 0026 5B88     	 ldrh r3,[r3,#2]
+ 381 0028 1BB2     	 sxth r3,r3
+ 382 002a 5B00     	 lsls r3,r3,#1
+ 383 002c 1A44     	 add r2,r2,r3
+ 384 002e 3B68     	 ldr r3,[r7]
+ 385 0030 1288     	 ldrh r2,[r2]
+ 386 0032 1A80     	 strh r2,[r3]
+ 387              	.L14:
+ 107:../Libraries/libscpi/src/fifo.c ****     }
+ 108:../Libraries/libscpi/src/fifo.c **** 
+ 109:../Libraries/libscpi/src/fifo.c ****     fifo->rd = (fifo->rd + 1) % (fifo->size);
+ 388              	 .loc 1 109 0
+ 389 0034 7B68     	 ldr r3,[r7,#4]
+ 390 0036 5B88     	 ldrh r3,[r3,#2]
+ 391 0038 1BB2     	 sxth r3,r3
+ 392 003a 0133     	 adds r3,r3,#1
+ 393 003c 7A68     	 ldr r2,[r7,#4]
+ 394 003e D288     	 ldrh r2,[r2,#6]
+ 395 0040 12B2     	 sxth r2,r2
+ 396 0042 93FBF2F1 	 sdiv r1,r3,r2
+ 397 0046 02FB01F2 	 mul r2,r2,r1
+ 398 004a 9B1A     	 subs r3,r3,r2
+ 399 004c 9AB2     	 uxth r2,r3
+ 400 004e 7B68     	 ldr r3,[r7,#4]
+ 401 0050 5A80     	 strh r2,[r3,#2]
+ 110:../Libraries/libscpi/src/fifo.c ****     fifo->count -= 1;
+ 402              	 .loc 1 110 0
+ 403 0052 7B68     	 ldr r3,[r7,#4]
+ 404 0054 9B88     	 ldrh r3,[r3,#4]
+ 405 0056 9BB2     	 uxth r3,r3
+ 406 0058 013B     	 subs r3,r3,#1
+ 407 005a 9BB2     	 uxth r3,r3
+ 408 005c 9AB2     	 uxth r2,r3
+ 409 005e 7B68     	 ldr r3,[r7,#4]
+ 410 0060 9A80     	 strh r2,[r3,#4]
+ 111:../Libraries/libscpi/src/fifo.c **** 
+ 112:../Libraries/libscpi/src/fifo.c ****     return TRUE;
+ 411              	 .loc 1 112 0
+ 412 0062 0123     	 movs r3,#1
+ 413              	.L13:
+ 113:../Libraries/libscpi/src/fifo.c **** }
+ 414              	 .loc 1 113 0
+ 415 0064 1846     	 mov r0,r3
+ 416 0066 0837     	 adds r7,r7,#8
+ 417              	.LCFI32:
+ 418              	 .cfi_def_cfa_offset 8
+ 419 0068 BD46     	 mov sp,r7
+ 420              	.LCFI33:
+ 421              	 .cfi_def_cfa_register 13
+ 422              	 
+ 423 006a 80BD     	 pop {r7,pc}
+ 424              	 .cfi_endproc
+ 425              	.LFE5:
+ 427              	 .section .text.fifo_remove_last,"ax",%progbits
+ 428              	 .align 2
+ 429              	 .global fifo_remove_last
+ 430              	 .hidden fifo_remove_last
+ 431              	 .thumb
+ 432              	 .thumb_func
+ 434              	fifo_remove_last:
+ 435              	.LFB6:
+ 114:../Libraries/libscpi/src/fifo.c **** 
+ 115:../Libraries/libscpi/src/fifo.c **** /**
+ 116:../Libraries/libscpi/src/fifo.c ****  * Remove last element from fifo
+ 117:../Libraries/libscpi/src/fifo.c ****  * @param fifo
+ 118:../Libraries/libscpi/src/fifo.c ****  * @param value
+ 119:../Libraries/libscpi/src/fifo.c ****  * @return FALSE - fifo is empty
+ 120:../Libraries/libscpi/src/fifo.c ****  */
+ 121:../Libraries/libscpi/src/fifo.c **** scpi_bool_t fifo_remove_last(scpi_fifo_t * fifo, scpi_error_t * value) {
+ 436              	 .loc 1 121 0
+ 437              	 .cfi_startproc
+ 438              	 
+ 439              	 
+ 440 0000 80B5     	 push {r7,lr}
+ 441              	.LCFI34:
+ 442              	 .cfi_def_cfa_offset 8
+ 443              	 .cfi_offset 7,-8
+ 444              	 .cfi_offset 14,-4
+ 445 0002 82B0     	 sub sp,sp,#8
+ 446              	.LCFI35:
+ 447              	 .cfi_def_cfa_offset 16
+ 448 0004 00AF     	 add r7,sp,#0
+ 449              	.LCFI36:
+ 450              	 .cfi_def_cfa_register 7
+ 451 0006 7860     	 str r0,[r7,#4]
+ 452 0008 3960     	 str r1,[r7]
+ 122:../Libraries/libscpi/src/fifo.c ****     /* FIFO empty? */
+ 123:../Libraries/libscpi/src/fifo.c ****     if (fifo_is_empty(fifo)) {
+ 453              	 .loc 1 123 0
+ 454 000a 7868     	 ldr r0,[r7,#4]
+ 455 000c FFF7FEFF 	 bl fifo_is_empty
+ 456 0010 0346     	 mov r3,r0
+ 457 0012 002B     	 cmp r3,#0
+ 458 0014 01D0     	 beq .L16
+ 124:../Libraries/libscpi/src/fifo.c ****         return FALSE;
+ 459              	 .loc 1 124 0
+ 460 0016 0023     	 movs r3,#0
+ 461 0018 28E0     	 b .L17
+ 462              	.L16:
+ 125:../Libraries/libscpi/src/fifo.c ****     }
+ 126:../Libraries/libscpi/src/fifo.c **** 
+ 127:../Libraries/libscpi/src/fifo.c ****     fifo->wr = (fifo->wr + fifo->size - 1) % (fifo->size);
+ 463              	 .loc 1 127 0
+ 464 001a 7B68     	 ldr r3,[r7,#4]
+ 465 001c 1B88     	 ldrh r3,[r3]
+ 466 001e 1AB2     	 sxth r2,r3
+ 467 0020 7B68     	 ldr r3,[r7,#4]
+ 468 0022 DB88     	 ldrh r3,[r3,#6]
+ 469 0024 1BB2     	 sxth r3,r3
+ 470 0026 1344     	 add r3,r3,r2
+ 471 0028 013B     	 subs r3,r3,#1
+ 472 002a 7A68     	 ldr r2,[r7,#4]
+ 473 002c D288     	 ldrh r2,[r2,#6]
+ 474 002e 12B2     	 sxth r2,r2
+ 475 0030 93FBF2F1 	 sdiv r1,r3,r2
+ 476 0034 02FB01F2 	 mul r2,r2,r1
+ 477 0038 9B1A     	 subs r3,r3,r2
+ 478 003a 9AB2     	 uxth r2,r3
+ 479 003c 7B68     	 ldr r3,[r7,#4]
+ 480 003e 1A80     	 strh r2,[r3]
+ 128:../Libraries/libscpi/src/fifo.c **** 
+ 129:../Libraries/libscpi/src/fifo.c ****     if (value) {
+ 481              	 .loc 1 129 0
+ 482 0040 3B68     	 ldr r3,[r7]
+ 483 0042 002B     	 cmp r3,#0
+ 484 0044 09D0     	 beq .L18
+ 130:../Libraries/libscpi/src/fifo.c ****         *value = fifo->data[fifo->wr];
+ 485              	 .loc 1 130 0
+ 486 0046 7B68     	 ldr r3,[r7,#4]
+ 487 0048 9A68     	 ldr r2,[r3,#8]
+ 488 004a 7B68     	 ldr r3,[r7,#4]
+ 489 004c 1B88     	 ldrh r3,[r3]
+ 490 004e 1BB2     	 sxth r3,r3
+ 491 0050 5B00     	 lsls r3,r3,#1
+ 492 0052 1A44     	 add r2,r2,r3
+ 493 0054 3B68     	 ldr r3,[r7]
+ 494 0056 1288     	 ldrh r2,[r2]
+ 495 0058 1A80     	 strh r2,[r3]
+ 496              	.L18:
+ 131:../Libraries/libscpi/src/fifo.c ****     }
+ 132:../Libraries/libscpi/src/fifo.c ****     fifo->count -= 1;
+ 497              	 .loc 1 132 0
+ 498 005a 7B68     	 ldr r3,[r7,#4]
+ 499 005c 9B88     	 ldrh r3,[r3,#4]
+ 500 005e 9BB2     	 uxth r3,r3
+ 501 0060 013B     	 subs r3,r3,#1
+ 502 0062 9BB2     	 uxth r3,r3
+ 503 0064 9AB2     	 uxth r2,r3
+ 504 0066 7B68     	 ldr r3,[r7,#4]
+ 505 0068 9A80     	 strh r2,[r3,#4]
+ 133:../Libraries/libscpi/src/fifo.c **** 
+ 134:../Libraries/libscpi/src/fifo.c ****     return TRUE;
+ 506              	 .loc 1 134 0
+ 507 006a 0123     	 movs r3,#1
+ 508              	.L17:
+ 135:../Libraries/libscpi/src/fifo.c **** }
+ 509              	 .loc 1 135 0
+ 510 006c 1846     	 mov r0,r3
+ 511 006e 0837     	 adds r7,r7,#8
+ 512              	.LCFI37:
+ 513              	 .cfi_def_cfa_offset 8
+ 514 0070 BD46     	 mov sp,r7
+ 515              	.LCFI38:
+ 516              	 .cfi_def_cfa_register 13
+ 517              	 
+ 518 0072 80BD     	 pop {r7,pc}
+ 519              	 .cfi_endproc
+ 520              	.LFE6:
+ 522              	 .section .text.fifo_count,"ax",%progbits
+ 523              	 .align 2
+ 524              	 .global fifo_count
+ 525              	 .hidden fifo_count
+ 526              	 .thumb
+ 527              	 .thumb_func
+ 529              	fifo_count:
+ 530              	.LFB7:
+ 136:../Libraries/libscpi/src/fifo.c **** 
+ 137:../Libraries/libscpi/src/fifo.c **** /**
+ 138:../Libraries/libscpi/src/fifo.c ****  * Retrive number of elements in fifo
+ 139:../Libraries/libscpi/src/fifo.c ****  * @param fifo
+ 140:../Libraries/libscpi/src/fifo.c ****  * @param value
+ 141:../Libraries/libscpi/src/fifo.c ****  * @return
+ 142:../Libraries/libscpi/src/fifo.c ****  */
+ 143:../Libraries/libscpi/src/fifo.c **** scpi_bool_t fifo_count(scpi_fifo_t * fifo, int16_t * value) {
+ 531              	 .loc 1 143 0
+ 532              	 .cfi_startproc
+ 533              	 
+ 534              	 
+ 535              	 
+ 536 0000 80B4     	 push {r7}
+ 537              	.LCFI39:
+ 538              	 .cfi_def_cfa_offset 4
+ 539              	 .cfi_offset 7,-4
+ 540 0002 83B0     	 sub sp,sp,#12
+ 541              	.LCFI40:
+ 542              	 .cfi_def_cfa_offset 16
+ 543 0004 00AF     	 add r7,sp,#0
+ 544              	.LCFI41:
+ 545              	 .cfi_def_cfa_register 7
+ 546 0006 7860     	 str r0,[r7,#4]
+ 547 0008 3960     	 str r1,[r7]
+ 144:../Libraries/libscpi/src/fifo.c ****     *value = fifo->count;
+ 548              	 .loc 1 144 0
+ 549 000a 7B68     	 ldr r3,[r7,#4]
+ 550 000c 9A88     	 ldrh r2,[r3,#4]
+ 551 000e 3B68     	 ldr r3,[r7]
+ 552 0010 1A80     	 strh r2,[r3]
+ 145:../Libraries/libscpi/src/fifo.c ****     return TRUE;
+ 553              	 .loc 1 145 0
+ 554 0012 0123     	 movs r3,#1
+ 146:../Libraries/libscpi/src/fifo.c **** }
+ 555              	 .loc 1 146 0
+ 556 0014 1846     	 mov r0,r3
+ 557 0016 0C37     	 adds r7,r7,#12
+ 558              	.LCFI42:
+ 559              	 .cfi_def_cfa_offset 4
+ 560 0018 BD46     	 mov sp,r7
+ 561              	.LCFI43:
+ 562              	 .cfi_def_cfa_register 13
+ 563              	 
+ 564 001a 5DF8047B 	 ldr r7,[sp],#4
+ 565              	.LCFI44:
+ 566              	 .cfi_restore 7
+ 567              	 .cfi_def_cfa_offset 0
+ 568 001e 7047     	 bx lr
+ 569              	 .cfi_endproc
+ 570              	.LFE7:
+ 572              	 .text
+ 573              	.Letext0:
+ 574              	 .file 2 "c:\\infineon\\tools\\dave ide\\4.5.0.202105191637\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 575              	 .file 3 "c:\\infineon\\tools\\dave ide\\4.5.0.202105191637\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 576              	 .file 4 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Libraries/libscpi/inc/scpi/types.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 fifo.c
+    {standard input}:20     .text.fifo_init:00000000 $t
+    {standard input}:26     .text.fifo_init:00000000 fifo_init
+    {standard input}:85     .text.fifo_clear:00000000 $t
+    {standard input}:91     .text.fifo_clear:00000000 fifo_clear
+    {standard input}:138    .text.fifo_is_empty:00000000 $t
+    {standard input}:144    .text.fifo_is_empty:00000000 fifo_is_empty
+    {standard input}:189    .text.fifo_is_full:00000000 $t
+    {standard input}:195    .text.fifo_is_full:00000000 fifo_is_full
+    {standard input}:243    .text.fifo_add:00000000 $t
+    {standard input}:249    .text.fifo_add:00000000 fifo_add
+    {standard input}:337    .text.fifo_remove:00000000 $t
+    {standard input}:343    .text.fifo_remove:00000000 fifo_remove
+    {standard input}:428    .text.fifo_remove_last:00000000 $t
+    {standard input}:434    .text.fifo_remove_last:00000000 fifo_remove_last
+    {standard input}:523    .text.fifo_count:00000000 $t
+    {standard input}:529    .text.fifo_count:00000000 fifo_count
+                     .debug_frame:00000010 $d
+
+NO UNDEFINED SYMBOLS

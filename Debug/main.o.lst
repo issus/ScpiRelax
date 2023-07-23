@@ -1,0 +1,795 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "main.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .section .text.SCPI_Write,"ax",%progbits
+  20              	 .align 2
+  21              	 .global SCPI_Write
+  22              	 .thumb
+  23              	 .thumb_func
+  25              	SCPI_Write:
+  26              	.LFB250:
+  27              	 .file 1 "../main.c"
+   1:../main.c     **** /*
+   2:../main.c     ****  * main.c
+   3:../main.c     ****  *
+   4:../main.c     ****  *  Created on: 2023 Jul 22 11:54:22
+   5:../main.c     ****  *  Author: Mark
+   6:../main.c     ****  */
+   7:../main.c     **** 
+   8:../main.c     **** #include "DAVE.h"                 //Declarations from DAVE Code Generation (includes SFR declaratio
+   9:../main.c     **** #include "scpi/scpi.h"
+  10:../main.c     **** #include "scpi-def.h"
+  11:../main.c     **** 
+  12:../main.c     **** extern void initialise_monitor_handles(void);
+  13:../main.c     **** 
+  14:../main.c     **** size_t SCPI_Write(scpi_t * context, const char * data, size_t len) {
+  28              	 .loc 1 14 0
+  29              	 .cfi_startproc
+  30              	 
+  31              	 
+  32 0000 80B5     	 push {r7,lr}
+  33              	.LCFI0:
+  34              	 .cfi_def_cfa_offset 8
+  35              	 .cfi_offset 7,-8
+  36              	 .cfi_offset 14,-4
+  37 0002 84B0     	 sub sp,sp,#16
+  38              	.LCFI1:
+  39              	 .cfi_def_cfa_offset 24
+  40 0004 00AF     	 add r7,sp,#0
+  41              	.LCFI2:
+  42              	 .cfi_def_cfa_register 7
+  43 0006 F860     	 str r0,[r7,#12]
+  44 0008 B960     	 str r1,[r7,#8]
+  45 000a 7A60     	 str r2,[r7,#4]
+  15:../main.c     **** 	(void) context;
+  16:../main.c     **** 
+  17:../main.c     **** 	tcp_write(context->user_context, data, len, 1);
+  46              	 .loc 1 17 0
+  47 000c FB68     	 ldr r3,[r7,#12]
+  48 000e 1A6E     	 ldr r2,[r3,#96]
+  49 0010 7B68     	 ldr r3,[r7,#4]
+  50 0012 9BB2     	 uxth r3,r3
+  51 0014 1046     	 mov r0,r2
+  52 0016 B968     	 ldr r1,[r7,#8]
+  53 0018 1A46     	 mov r2,r3
+  54 001a 0123     	 movs r3,#1
+  55 001c FFF7FEFF 	 bl tcp_write
+  18:../main.c     **** 	return len;
+  56              	 .loc 1 18 0
+  57 0020 7B68     	 ldr r3,[r7,#4]
+  19:../main.c     **** }
+  58              	 .loc 1 19 0
+  59 0022 1846     	 mov r0,r3
+  60 0024 1037     	 adds r7,r7,#16
+  61              	.LCFI3:
+  62              	 .cfi_def_cfa_offset 8
+  63 0026 BD46     	 mov sp,r7
+  64              	.LCFI4:
+  65              	 .cfi_def_cfa_register 13
+  66              	 
+  67 0028 80BD     	 pop {r7,pc}
+  68              	 .cfi_endproc
+  69              	.LFE250:
+  71 002a 00BF     	 .section .text.SCPI_Flush,"ax",%progbits
+  72              	 .align 2
+  73              	 .global SCPI_Flush
+  74              	 .thumb
+  75              	 .thumb_func
+  77              	SCPI_Flush:
+  78              	.LFB251:
+  20:../main.c     **** 
+  21:../main.c     **** scpi_result_t SCPI_Flush(scpi_t * context) {
+  79              	 .loc 1 21 0
+  80              	 .cfi_startproc
+  81              	 
+  82              	 
+  83 0000 80B5     	 push {r7,lr}
+  84              	.LCFI5:
+  85              	 .cfi_def_cfa_offset 8
+  86              	 .cfi_offset 7,-8
+  87              	 .cfi_offset 14,-4
+  88 0002 82B0     	 sub sp,sp,#8
+  89              	.LCFI6:
+  90              	 .cfi_def_cfa_offset 16
+  91 0004 00AF     	 add r7,sp,#0
+  92              	.LCFI7:
+  93              	 .cfi_def_cfa_register 7
+  94 0006 7860     	 str r0,[r7,#4]
+  22:../main.c     **** 	(void) context;
+  23:../main.c     **** 
+  24:../main.c     **** 	tcp_output(context->user_context);
+  95              	 .loc 1 24 0
+  96 0008 7B68     	 ldr r3,[r7,#4]
+  97 000a 1B6E     	 ldr r3,[r3,#96]
+  98 000c 1846     	 mov r0,r3
+  99 000e FFF7FEFF 	 bl tcp_output
+  25:../main.c     **** 
+  26:../main.c     **** 	return SCPI_RES_OK;
+ 100              	 .loc 1 26 0
+ 101 0012 0123     	 movs r3,#1
+ 102 0014 5BB2     	 sxtb r3,r3
+  27:../main.c     **** }
+ 103              	 .loc 1 27 0
+ 104 0016 1846     	 mov r0,r3
+ 105 0018 0837     	 adds r7,r7,#8
+ 106              	.LCFI8:
+ 107              	 .cfi_def_cfa_offset 8
+ 108 001a BD46     	 mov sp,r7
+ 109              	.LCFI9:
+ 110              	 .cfi_def_cfa_register 13
+ 111              	 
+ 112 001c 80BD     	 pop {r7,pc}
+ 113              	 .cfi_endproc
+ 114              	.LFE251:
+ 116 001e 00BF     	 .section .rodata
+ 117              	 .align 2
+ 118              	.LC0:
+ 119 0000 4552524F 	 .ascii "ERROR!\015\000"
+ 119      52210D00 
+ 120              	 .section .text.SCPI_Error,"ax",%progbits
+ 121              	 .align 2
+ 122              	 .global SCPI_Error
+ 123              	 .thumb
+ 124              	 .thumb_func
+ 126              	SCPI_Error:
+ 127              	.LFB252:
+  28:../main.c     **** 
+  29:../main.c     **** int SCPI_Error(scpi_t * context, int_fast16_t err) {
+ 128              	 .loc 1 29 0
+ 129              	 .cfi_startproc
+ 130              	 
+ 131              	 
+ 132 0000 80B5     	 push {r7,lr}
+ 133              	.LCFI10:
+ 134              	 .cfi_def_cfa_offset 8
+ 135              	 .cfi_offset 7,-8
+ 136              	 .cfi_offset 14,-4
+ 137 0002 82B0     	 sub sp,sp,#8
+ 138              	.LCFI11:
+ 139              	 .cfi_def_cfa_offset 16
+ 140 0004 00AF     	 add r7,sp,#0
+ 141              	.LCFI12:
+ 142              	 .cfi_def_cfa_register 7
+ 143 0006 7860     	 str r0,[r7,#4]
+ 144 0008 3960     	 str r1,[r7]
+  30:../main.c     **** 	(void) context;
+  31:../main.c     **** 
+  32:../main.c     **** 	printf("ERROR!\r\n");
+ 145              	 .loc 1 32 0
+ 146 000a 0448     	 ldr r0,.L7
+ 147 000c FFF7FEFF 	 bl puts
+  33:../main.c     **** 
+  34:../main.c     **** 	return 0;
+ 148              	 .loc 1 34 0
+ 149 0010 0023     	 movs r3,#0
+  35:../main.c     **** }
+ 150              	 .loc 1 35 0
+ 151 0012 1846     	 mov r0,r3
+ 152 0014 0837     	 adds r7,r7,#8
+ 153              	.LCFI13:
+ 154              	 .cfi_def_cfa_offset 8
+ 155 0016 BD46     	 mov sp,r7
+ 156              	.LCFI14:
+ 157              	 .cfi_def_cfa_register 13
+ 158              	 
+ 159 0018 80BD     	 pop {r7,pc}
+ 160              	.L8:
+ 161 001a 00BF     	 .align 2
+ 162              	.L7:
+ 163 001c 00000000 	 .word .LC0
+ 164              	 .cfi_endproc
+ 165              	.LFE252:
+ 167              	 .section .text.SCPI_Control,"ax",%progbits
+ 168              	 .align 2
+ 169              	 .global SCPI_Control
+ 170              	 .thumb
+ 171              	 .thumb_func
+ 173              	SCPI_Control:
+ 174              	.LFB253:
+  36:../main.c     **** 
+  37:../main.c     **** scpi_result_t SCPI_Control(scpi_t * context, scpi_ctrl_name_t ctrl, scpi_reg_val_t val) {
+ 175              	 .loc 1 37 0
+ 176              	 .cfi_startproc
+ 177              	 
+ 178              	 
+ 179              	 
+ 180 0000 80B4     	 push {r7}
+ 181              	.LCFI15:
+ 182              	 .cfi_def_cfa_offset 4
+ 183              	 .cfi_offset 7,-4
+ 184 0002 83B0     	 sub sp,sp,#12
+ 185              	.LCFI16:
+ 186              	 .cfi_def_cfa_offset 16
+ 187 0004 00AF     	 add r7,sp,#0
+ 188              	.LCFI17:
+ 189              	 .cfi_def_cfa_register 7
+ 190 0006 7860     	 str r0,[r7,#4]
+ 191 0008 0B46     	 mov r3,r1
+ 192 000a FB70     	 strb r3,[r7,#3]
+ 193 000c 1346     	 mov r3,r2
+ 194 000e 3B80     	 strh r3,[r7]
+  38:../main.c     **** 	(void) context;
+  39:../main.c     **** 
+  40:../main.c     **** 	return SCPI_RES_OK;
+ 195              	 .loc 1 40 0
+ 196 0010 0123     	 movs r3,#1
+ 197 0012 5BB2     	 sxtb r3,r3
+  41:../main.c     **** }
+ 198              	 .loc 1 41 0
+ 199 0014 1846     	 mov r0,r3
+ 200 0016 0C37     	 adds r7,r7,#12
+ 201              	.LCFI18:
+ 202              	 .cfi_def_cfa_offset 4
+ 203 0018 BD46     	 mov sp,r7
+ 204              	.LCFI19:
+ 205              	 .cfi_def_cfa_register 13
+ 206              	 
+ 207 001a 5DF8047B 	 ldr r7,[sp],#4
+ 208              	.LCFI20:
+ 209              	 .cfi_restore 7
+ 210              	 .cfi_def_cfa_offset 0
+ 211 001e 7047     	 bx lr
+ 212              	 .cfi_endproc
+ 213              	.LFE253:
+ 215              	 .section .rodata
+ 216              	 .align 2
+ 217              	.LC1:
+ 218 0008 2A2A2052 	 .ascii "** RESET COMMAND\015\000"
+ 218      45534554 
+ 218      20434F4D 
+ 218      4D414E44 
+ 218      0D00
+ 219              	 .section .text.SCPI_Reset,"ax",%progbits
+ 220              	 .align 2
+ 221              	 .global SCPI_Reset
+ 222              	 .thumb
+ 223              	 .thumb_func
+ 225              	SCPI_Reset:
+ 226              	.LFB254:
+  42:../main.c     **** 
+  43:../main.c     **** scpi_result_t SCPI_Reset(scpi_t * context) {
+ 227              	 .loc 1 43 0
+ 228              	 .cfi_startproc
+ 229              	 
+ 230              	 
+ 231 0000 80B5     	 push {r7,lr}
+ 232              	.LCFI21:
+ 233              	 .cfi_def_cfa_offset 8
+ 234              	 .cfi_offset 7,-8
+ 235              	 .cfi_offset 14,-4
+ 236 0002 82B0     	 sub sp,sp,#8
+ 237              	.LCFI22:
+ 238              	 .cfi_def_cfa_offset 16
+ 239 0004 00AF     	 add r7,sp,#0
+ 240              	.LCFI23:
+ 241              	 .cfi_def_cfa_register 7
+ 242 0006 7860     	 str r0,[r7,#4]
+  44:../main.c     **** 	(void) context;
+  45:../main.c     **** 
+  46:../main.c     **** 	printf("** RESET COMMAND\r\n");
+ 243              	 .loc 1 46 0
+ 244 0008 0448     	 ldr r0,.L13
+ 245 000a FFF7FEFF 	 bl puts
+  47:../main.c     **** 
+  48:../main.c     **** 	// todo: Implement instrument settings reset.
+  49:../main.c     **** 
+  50:../main.c     **** 	return SCPI_RES_OK;
+ 246              	 .loc 1 50 0
+ 247 000e 0123     	 movs r3,#1
+ 248 0010 5BB2     	 sxtb r3,r3
+  51:../main.c     **** }
+ 249              	 .loc 1 51 0
+ 250 0012 1846     	 mov r0,r3
+ 251 0014 0837     	 adds r7,r7,#8
+ 252              	.LCFI24:
+ 253              	 .cfi_def_cfa_offset 8
+ 254 0016 BD46     	 mov sp,r7
+ 255              	.LCFI25:
+ 256              	 .cfi_def_cfa_register 13
+ 257              	 
+ 258 0018 80BD     	 pop {r7,pc}
+ 259              	.L14:
+ 260 001a 00BF     	 .align 2
+ 261              	.L13:
+ 262 001c 08000000 	 .word .LC1
+ 263              	 .cfi_endproc
+ 264              	.LFE254:
+ 266              	 .section .text.client_recv,"ax",%progbits
+ 267              	 .align 2
+ 268              	 .thumb
+ 269              	 .thumb_func
+ 271              	client_recv:
+ 272              	.LFB255:
+  52:../main.c     **** 
+  53:../main.c     **** static err_t client_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err) {
+ 273              	 .loc 1 53 0
+ 274              	 .cfi_startproc
+ 275              	 
+ 276              	 
+ 277 0000 90B5     	 push {r4,r7,lr}
+ 278              	.LCFI26:
+ 279              	 .cfi_def_cfa_offset 12
+ 280              	 .cfi_offset 4,-12
+ 281              	 .cfi_offset 7,-8
+ 282              	 .cfi_offset 14,-4
+ 283 0002 ADF2144D 	 subw sp,sp,#1044
+ 284              	.LCFI27:
+ 285              	 .cfi_def_cfa_offset 1056
+ 286 0006 00AF     	 add r7,sp,#0
+ 287              	.LCFI28:
+ 288              	 .cfi_def_cfa_register 7
+ 289 0008 07F10C04 	 add r4,r7,#12
+ 290 000c 2060     	 str r0,[r4]
+ 291 000e 07F10800 	 add r0,r7,#8
+ 292 0012 0160     	 str r1,[r0]
+ 293 0014 391D     	 adds r1,r7,#4
+ 294 0016 0A60     	 str r2,[r1]
+ 295 0018 1A46     	 mov r2,r3
+ 296 001a FB1C     	 adds r3,r7,#3
+ 297 001c 1A70     	 strb r2,[r3]
+  54:../main.c     **** 	char buffer[1024] = {0};
+ 298              	 .loc 1 54 0
+ 299 001e 07F11003 	 add r3,r7,#16
+ 300 0022 1A46     	 mov r2,r3
+ 301 0024 4FF48063 	 mov r3,#1024
+ 302 0028 1046     	 mov r0,r2
+ 303 002a 0021     	 movs r1,#0
+ 304 002c 1A46     	 mov r2,r3
+ 305 002e FFF7FEFF 	 bl memset
+  55:../main.c     **** 
+  56:../main.c     **** 	// if pbuf isnt NULL, we have received data.
+  57:../main.c     **** 	if (p != NULL) {
+ 306              	 .loc 1 57 0
+ 307 0032 3B1D     	 adds r3,r7,#4
+ 308 0034 1B68     	 ldr r3,[r3]
+ 309 0036 002B     	 cmp r3,#0
+ 310 0038 24D0     	 beq .L16
+  58:../main.c     **** 		pbuf_copy_partial(p, buffer, p->len, 0);
+ 311              	 .loc 1 58 0
+ 312 003a 3B1D     	 adds r3,r7,#4
+ 313 003c 1B68     	 ldr r3,[r3]
+ 314 003e 5A89     	 ldrh r2,[r3,#10]
+ 315 0040 3B1D     	 adds r3,r7,#4
+ 316 0042 07F11001 	 add r1,r7,#16
+ 317 0046 1868     	 ldr r0,[r3]
+ 318 0048 0023     	 movs r3,#0
+ 319 004a FFF7FEFF 	 bl pbuf_copy_partial
+  59:../main.c     **** 
+  60:../main.c     **** 		tcp_recved(pcb, p->tot_len);
+ 320              	 .loc 1 60 0
+ 321 004e 3B1D     	 adds r3,r7,#4
+ 322 0050 1B68     	 ldr r3,[r3]
+ 323 0052 1A89     	 ldrh r2,[r3,#8]
+ 324 0054 07F10803 	 add r3,r7,#8
+ 325 0058 1868     	 ldr r0,[r3]
+ 326 005a 1146     	 mov r1,r2
+ 327 005c FFF7FEFF 	 bl tcp_recved
+  61:../main.c     **** 
+  62:../main.c     **** 		SCPI_Input(&scpi_context, buffer, strlen(buffer));
+ 328              	 .loc 1 62 0
+ 329 0060 07F11003 	 add r3,r7,#16
+ 330 0064 1846     	 mov r0,r3
+ 331 0066 FFF7FEFF 	 bl strlen
+ 332 006a 0346     	 mov r3,r0
+ 333 006c 1A46     	 mov r2,r3
+ 334 006e 07F11003 	 add r3,r7,#16
+ 335 0072 1648     	 ldr r0,.L19
+ 336 0074 1946     	 mov r1,r3
+ 337 0076 FFF7FEFF 	 bl SCPI_Input
+  63:../main.c     **** 
+  64:../main.c     **** 		pbuf_free(p);
+ 338              	 .loc 1 64 0
+ 339 007a 3B1D     	 adds r3,r7,#4
+ 340 007c 1868     	 ldr r0,[r3]
+ 341 007e FFF7FEFF 	 bl pbuf_free
+ 342 0082 1BE0     	 b .L17
+ 343              	.L16:
+  65:../main.c     **** 	}
+  66:../main.c     **** 	// if pbuf is NULL, then the remote host closed the connection
+  67:../main.c     **** 	else if (err == ERR_OK) {
+ 344              	 .loc 1 67 0
+ 345 0084 FB1C     	 adds r3,r7,#3
+ 346 0086 93F90030 	 ldrsb r3,[r3]
+ 347 008a 002B     	 cmp r3,#0
+ 348 008c 16D1     	 bne .L17
+  68:../main.c     **** 		tcp_arg(pcb, NULL);
+ 349              	 .loc 1 68 0
+ 350 008e 07F10803 	 add r3,r7,#8
+ 351 0092 1868     	 ldr r0,[r3]
+ 352 0094 0021     	 movs r1,#0
+ 353 0096 FFF7FEFF 	 bl tcp_arg
+  69:../main.c     **** 		tcp_sent(pcb, NULL);
+ 354              	 .loc 1 69 0
+ 355 009a 07F10803 	 add r3,r7,#8
+ 356 009e 1868     	 ldr r0,[r3]
+ 357 00a0 0021     	 movs r1,#0
+ 358 00a2 FFF7FEFF 	 bl tcp_sent
+  70:../main.c     **** 		tcp_recv(pcb, NULL);
+ 359              	 .loc 1 70 0
+ 360 00a6 07F10803 	 add r3,r7,#8
+ 361 00aa 1868     	 ldr r0,[r3]
+ 362 00ac 0021     	 movs r1,#0
+ 363 00ae FFF7FEFF 	 bl tcp_recv
+  71:../main.c     **** 		tcp_close(pcb);
+ 364              	 .loc 1 71 0
+ 365 00b2 07F10803 	 add r3,r7,#8
+ 366 00b6 1868     	 ldr r0,[r3]
+ 367 00b8 FFF7FEFF 	 bl tcp_close
+ 368              	.L17:
+  72:../main.c     **** 	}
+  73:../main.c     **** 
+  74:../main.c     **** 	return ERR_OK;
+ 369              	 .loc 1 74 0
+ 370 00bc 0023     	 movs r3,#0
+ 371 00be 5BB2     	 sxtb r3,r3
+  75:../main.c     **** }
+ 372              	 .loc 1 75 0
+ 373 00c0 1846     	 mov r0,r3
+ 374 00c2 07F21447 	 addw r7,r7,#1044
+ 375              	.LCFI29:
+ 376              	 .cfi_def_cfa_offset 12
+ 377 00c6 BD46     	 mov sp,r7
+ 378              	.LCFI30:
+ 379              	 .cfi_def_cfa_register 13
+ 380              	 
+ 381 00c8 90BD     	 pop {r4,r7,pc}
+ 382              	.L20:
+ 383 00ca 00BF     	 .align 2
+ 384              	.L19:
+ 385 00cc 00000000 	 .word scpi_context
+ 386              	 .cfi_endproc
+ 387              	.LFE255:
+ 389              	 .section .rodata
+ 390 001a 0000     	 .align 2
+ 391              	.LC2:
+ 392 001c 2A2A204E 	 .ascii "** NEW CONNECTION\015\000"
+ 392      45572043 
+ 392      4F4E4E45 
+ 392      4354494F 
+ 392      4E0D00
+ 393              	 .section .text.client_accept,"ax",%progbits
+ 394              	 .align 2
+ 395              	 .thumb
+ 396              	 .thumb_func
+ 398              	client_accept:
+ 399              	.LFB256:
+  76:../main.c     **** 
+  77:../main.c     **** static err_t client_accept(void *arg, struct tcp_pcb *newpcb, err_t err) {
+ 400              	 .loc 1 77 0
+ 401              	 .cfi_startproc
+ 402              	 
+ 403              	 
+ 404 0000 80B5     	 push {r7,lr}
+ 405              	.LCFI31:
+ 406              	 .cfi_def_cfa_offset 8
+ 407              	 .cfi_offset 7,-8
+ 408              	 .cfi_offset 14,-4
+ 409 0002 84B0     	 sub sp,sp,#16
+ 410              	.LCFI32:
+ 411              	 .cfi_def_cfa_offset 24
+ 412 0004 00AF     	 add r7,sp,#0
+ 413              	.LCFI33:
+ 414              	 .cfi_def_cfa_register 7
+ 415 0006 F860     	 str r0,[r7,#12]
+ 416 0008 B960     	 str r1,[r7,#8]
+ 417 000a 1346     	 mov r3,r2
+ 418 000c FB71     	 strb r3,[r7,#7]
+  78:../main.c     **** 	tcp_recv(newpcb, client_recv);
+ 419              	 .loc 1 78 0
+ 420 000e B868     	 ldr r0,[r7,#8]
+ 421 0010 0749     	 ldr r1,.L23
+ 422 0012 FFF7FEFF 	 bl tcp_recv
+  79:../main.c     **** 
+  80:../main.c     **** 	printf("** NEW CONNECTION\r\n");
+ 423              	 .loc 1 80 0
+ 424 0016 0748     	 ldr r0,.L23+4
+ 425 0018 FFF7FEFF 	 bl puts
+  81:../main.c     **** 
+  82:../main.c     **** 	scpi_context.user_context = newpcb;
+ 426              	 .loc 1 82 0
+ 427 001c 064A     	 ldr r2,.L23+8
+ 428 001e BB68     	 ldr r3,[r7,#8]
+ 429 0020 1366     	 str r3,[r2,#96]
+  83:../main.c     **** 
+  84:../main.c     **** 	return ERR_OK;
+ 430              	 .loc 1 84 0
+ 431 0022 0023     	 movs r3,#0
+ 432 0024 5BB2     	 sxtb r3,r3
+  85:../main.c     **** }
+ 433              	 .loc 1 85 0
+ 434 0026 1846     	 mov r0,r3
+ 435 0028 1037     	 adds r7,r7,#16
+ 436              	.LCFI34:
+ 437              	 .cfi_def_cfa_offset 8
+ 438 002a BD46     	 mov sp,r7
+ 439              	.LCFI35:
+ 440              	 .cfi_def_cfa_register 13
+ 441              	 
+ 442 002c 80BD     	 pop {r7,pc}
+ 443              	.L24:
+ 444 002e 00BF     	 .align 2
+ 445              	.L23:
+ 446 0030 00000000 	 .word client_recv
+ 447 0034 1C000000 	 .word .LC2
+ 448 0038 00000000 	 .word scpi_context
+ 449              	 .cfi_endproc
+ 450              	.LFE256:
+ 452              	 .section .rodata
+ 453 002f 00       	 .align 2
+ 454              	.LC3:
+ 455 0030 53544152 	 .ascii "STARTUP\015\000"
+ 455      5455500D 
+ 455      00
+ 456 0039 000000   	 .align 2
+ 457              	.LC4:
+ 458 003c 44415645 	 .ascii "DAVE APPs initialization failed\000"
+ 458      20415050 
+ 458      7320696E 
+ 458      69746961 
+ 458      6C697A61 
+ 459              	 .align 2
+ 460              	.LC5:
+ 461 005c 4F524947 	 .ascii "ORIGINALCIRCUIT\000"
+ 461      494E414C 
+ 461      43495243 
+ 461      55495400 
+ 462              	 .align 2
+ 463              	.LC6:
+ 464 006c 52454C41 	 .ascii "RELAXKIT\000"
+ 464      584B4954 
+ 464      00
+ 465 0075 000000   	 .align 2
+ 466              	.LC7:
+ 467 0078 30312D30 	 .ascii "01-02\000"
+ 467      3200
+ 468 007e 0000     	 .section .text.main,"ax",%progbits
+ 469              	 .align 2
+ 470              	 .global main
+ 471              	 .thumb
+ 472              	 .thumb_func
+ 474              	main:
+ 475              	.LFB257:
+  86:../main.c     **** 
+  87:../main.c     **** /**
+  88:../main.c     **** 
+  89:../main.c     ****  * @brief main() - Application entry point
+  90:../main.c     ****  *
+  91:../main.c     ****  * <b>Details of function</b><br>
+  92:../main.c     ****  * This routine is the application entry point. It is invoked by the device startup code. It is res
+  93:../main.c     ****  * invoking the APP initialization dispatcher routine - DAVE_Init() and hosting the place-holder fo
+  94:../main.c     ****  * code.
+  95:../main.c     ****  */
+  96:../main.c     **** 
+  97:../main.c     **** int main(void)
+  98:../main.c     **** {
+ 476              	 .loc 1 98 0
+ 477              	 .cfi_startproc
+ 478              	 
+ 479              	 
+ 480 0000 80B5     	 push {r7,lr}
+ 481              	.LCFI36:
+ 482              	 .cfi_def_cfa_offset 8
+ 483              	 .cfi_offset 7,-8
+ 484              	 .cfi_offset 14,-4
+ 485 0002 8AB0     	 sub sp,sp,#40
+ 486              	.LCFI37:
+ 487              	 .cfi_def_cfa_offset 48
+ 488 0004 08AF     	 add r7,sp,#32
+ 489              	.LCFI38:
+ 490              	 .cfi_def_cfa 7,16
+  99:../main.c     ****   DAVE_STATUS_t status;
+ 100:../main.c     **** 
+ 101:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 491              	 .loc 1 101 0
+ 492 0006 FFF7FEFF 	 bl DAVE_Init
+ 493 000a 0346     	 mov r3,r0
+ 494 000c FB71     	 strb r3,[r7,#7]
+ 102:../main.c     ****   initialise_monitor_handles();
+ 495              	 .loc 1 102 0
+ 496 000e FFF7FEFF 	 bl initialise_monitor_handles
+ 103:../main.c     **** 
+ 104:../main.c     ****   printf("STARTUP\r\n");
+ 497              	 .loc 1 104 0
+ 498 0012 1C48     	 ldr r0,.L29
+ 499 0014 FFF7FEFF 	 bl puts
+ 105:../main.c     **** 
+ 106:../main.c     **** 
+ 107:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
+ 500              	 .loc 1 107 0
+ 501 0018 FB79     	 ldrb r3,[r7,#7]
+ 502 001a 002B     	 cmp r3,#0
+ 503 001c 03D0     	 beq .L26
+ 108:../main.c     ****   {
+ 109:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+ 110:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
+ 504              	 .loc 1 110 0
+ 505 001e 1A48     	 ldr r0,.L29+4
+ 506 0020 FFF7FEFF 	 bl puts
+ 507              	.L27:
+ 111:../main.c     **** 
+ 112:../main.c     ****     while(1U)
+ 113:../main.c     ****     {
+ 114:../main.c     **** 
+ 115:../main.c     ****     }
+ 508              	 .loc 1 115 0 discriminator 1
+ 509 0024 FEE7     	 b .L27
+ 510              	.L26:
+ 116:../main.c     ****   }
+ 117:../main.c     **** 
+ 118:../main.c     ****   struct tcp_pcb *pcb;
+ 119:../main.c     ****   pcb = tcp_new();
+ 511              	 .loc 1 119 0
+ 512 0026 FFF7FEFF 	 bl tcp_new
+ 513 002a 3860     	 str r0,[r7]
+ 120:../main.c     ****   tcp_bind(pcb, IP_ADDR_ANY, 5025);
+ 514              	 .loc 1 120 0
+ 515 002c 3868     	 ldr r0,[r7]
+ 516 002e 1749     	 ldr r1,.L29+8
+ 517 0030 41F2A132 	 movw r2,#5025
+ 518 0034 FFF7FEFF 	 bl tcp_bind
+ 121:../main.c     ****   pcb = tcp_listen(pcb);
+ 519              	 .loc 1 121 0
+ 520 0038 3868     	 ldr r0,[r7]
+ 521 003a FF21     	 movs r1,#255
+ 522 003c FFF7FEFF 	 bl tcp_listen_with_backlog
+ 523 0040 3860     	 str r0,[r7]
+ 122:../main.c     ****   tcp_accept(pcb, client_accept);
+ 524              	 .loc 1 122 0
+ 525 0042 3868     	 ldr r0,[r7]
+ 526 0044 1249     	 ldr r1,.L29+12
+ 527 0046 FFF7FEFF 	 bl tcp_accept
+ 123:../main.c     **** 
+ 124:../main.c     ****   scpi_context.user_context = pcb;
+ 528              	 .loc 1 124 0
+ 529 004a 124A     	 ldr r2,.L29+16
+ 530 004c 3B68     	 ldr r3,[r7]
+ 531 004e 1366     	 str r3,[r2,#96]
+ 125:../main.c     **** 
+ 126:../main.c     ****   SCPI_Init(&scpi_context,
+ 532              	 .loc 1 126 0
+ 533 0050 114B     	 ldr r3,.L29+20
+ 534 0052 0093     	 str r3,[sp]
+ 535 0054 114B     	 ldr r3,.L29+24
+ 536 0056 0193     	 str r3,[sp,#4]
+ 537 0058 0023     	 movs r3,#0
+ 538 005a 0293     	 str r3,[sp,#8]
+ 539 005c 104B     	 ldr r3,.L29+28
+ 540 005e 0393     	 str r3,[sp,#12]
+ 541 0060 104B     	 ldr r3,.L29+32
+ 542 0062 0493     	 str r3,[sp,#16]
+ 543 0064 4FF48073 	 mov r3,#256
+ 544 0068 0593     	 str r3,[sp,#20]
+ 545 006a 0F4B     	 ldr r3,.L29+36
+ 546 006c 0693     	 str r3,[sp,#24]
+ 547 006e 1123     	 movs r3,#17
+ 548 0070 0793     	 str r3,[sp,#28]
+ 549 0072 0848     	 ldr r0,.L29+16
+ 550 0074 0D49     	 ldr r1,.L29+40
+ 551 0076 0E4A     	 ldr r2,.L29+44
+ 552 0078 0E4B     	 ldr r3,.L29+48
+ 553 007a FFF7FEFF 	 bl SCPI_Init
+ 554              	.L28:
+ 127:../main.c     **** 		  scpi_commands,
+ 128:../main.c     **** 		  &scpi_interface,
+ 129:../main.c     **** 		  scpi_units_def,
+ 130:../main.c     **** 		  SCPI_IDN1, SCPI_IDN2, SCPI_IDN3, SCPI_IDN4,
+ 131:../main.c     **** 		  scpi_input_buffer, SCPI_INPUT_BUFFER_LENGTH,
+ 132:../main.c     **** 		  scpi_error_queue_data, SCPI_ERROR_QUEUE_SIZE);
+ 133:../main.c     **** 
+ 134:../main.c     **** 
+ 135:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+ 136:../main.c     ****   while(1U)
+ 137:../main.c     ****   {
+ 138:../main.c     **** 	  sys_check_timeouts();
+ 555              	 .loc 1 138 0 discriminator 1
+ 556 007e FFF7FEFF 	 bl sys_check_timeouts
+ 139:../main.c     ****   }
+ 557              	 .loc 1 139 0 discriminator 1
+ 558 0082 FCE7     	 b .L28
+ 559              	.L30:
+ 560              	 .align 2
+ 561              	.L29:
+ 562 0084 30000000 	 .word .LC3
+ 563 0088 3C000000 	 .word .LC4
+ 564 008c 00000000 	 .word ip_addr_any
+ 565 0090 00000000 	 .word client_accept
+ 566 0094 00000000 	 .word scpi_context
+ 567 0098 5C000000 	 .word .LC5
+ 568 009c 6C000000 	 .word .LC6
+ 569 00a0 78000000 	 .word .LC7
+ 570 00a4 00000000 	 .word scpi_input_buffer
+ 571 00a8 00000000 	 .word scpi_error_queue_data
+ 572 00ac 00000000 	 .word scpi_commands
+ 573 00b0 00000000 	 .word scpi_interface
+ 574 00b4 00000000 	 .word scpi_units_def
+ 575              	 .cfi_endproc
+ 576              	.LFE257:
+ 578              	 .text
+ 579              	.Letext0:
+ 580              	 .file 2 "c:\\infineon\\tools\\dave ide\\4.5.0.202105191637\\eclipse\\arm-gcc-49\\lib\\gcc\\arm-none-eabi\\4.9.3\\include\\stddef.h"
+ 581              	 .file 3 "c:\\infineon\\tools\\dave ide\\4.5.0.202105191637\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 582              	 .file 4 "c:\\infineon\\tools\\dave ide\\4.5.0.202105191637\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 583              	 .file 5 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Dave/Generated/ETH_LWIP/lwip/include/lwip/arch.h"
+ 584              	 .file 6 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Dave/Generated/ETH_LWIP/lwip/include/lwip/err.h"
+ 585              	 .file 7 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Dave/Generated/ETH_LWIP/lwip/include/lwip/tcpbase.h"
+ 586              	 .file 8 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Dave/Generated/ETH_LWIP/lwip/include/lwip/pbuf.h"
+ 587              	 .file 9 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Dave/Generated/ETH_LWIP/lwip/include/lwip/ip4_addr.h"
+ 588              	 .file 10 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Dave/Generated/ETH_LWIP/lwip/include/lwip/ip_addr.h"
+ 589              	 .file 11 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Dave/Generated/ETH_LWIP/lwip/include/lwip/tcp.h"
+ 590              	 .file 12 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Dave/Generated/DAVE.h"
+ 591              	 .file 13 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Libraries/libscpi/inc/scpi/types.h"
+ 592              	 .file 14 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 593              	 .file 15 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Libraries/CMSIS/Include/core_cm4.h"
+ 594              	 .file 16 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Libraries/CMSIS/Infineon/XMC4700_series/Include/system_XMC4700.h"
+ 595              	 .file 17 "C:/Infineon/Tools/DAVE IDE/4.5.0.202105191637/eclipse/workspace/ScpiRelax/Libraries/libscpi/inc/scpi/units.h"
+ 596              	 .file 18 "../scpi-def.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+    {standard input}:20     .text.SCPI_Write:00000000 $t
+    {standard input}:25     .text.SCPI_Write:00000000 SCPI_Write
+    {standard input}:72     .text.SCPI_Flush:00000000 $t
+    {standard input}:77     .text.SCPI_Flush:00000000 SCPI_Flush
+    {standard input}:117    .rodata:00000000 $d
+    {standard input}:121    .text.SCPI_Error:00000000 $t
+    {standard input}:126    .text.SCPI_Error:00000000 SCPI_Error
+    {standard input}:163    .text.SCPI_Error:0000001c $d
+    {standard input}:168    .text.SCPI_Control:00000000 $t
+    {standard input}:173    .text.SCPI_Control:00000000 SCPI_Control
+    {standard input}:220    .text.SCPI_Reset:00000000 $t
+    {standard input}:225    .text.SCPI_Reset:00000000 SCPI_Reset
+    {standard input}:262    .text.SCPI_Reset:0000001c $d
+    {standard input}:267    .text.client_recv:00000000 $t
+    {standard input}:271    .text.client_recv:00000000 client_recv
+    {standard input}:385    .text.client_recv:000000cc $d
+    {standard input}:394    .text.client_accept:00000000 $t
+    {standard input}:398    .text.client_accept:00000000 client_accept
+    {standard input}:446    .text.client_accept:00000030 $d
+    {standard input}:469    .text.main:00000000 $t
+    {standard input}:474    .text.main:00000000 main
+    {standard input}:562    .text.main:00000084 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+tcp_write
+tcp_output
+puts
+memset
+pbuf_copy_partial
+tcp_recved
+strlen
+SCPI_Input
+pbuf_free
+tcp_arg
+tcp_sent
+tcp_recv
+tcp_close
+scpi_context
+DAVE_Init
+initialise_monitor_handles
+tcp_new
+tcp_bind
+tcp_listen_with_backlog
+tcp_accept
+SCPI_Init
+sys_check_timeouts
+ip_addr_any
+scpi_input_buffer
+scpi_error_queue_data
+scpi_commands
+scpi_interface
+scpi_units_def
